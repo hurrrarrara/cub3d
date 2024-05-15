@@ -2,6 +2,7 @@
 #include "define.h"
 #include "mlx.h"
 #include "init.h"
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -42,14 +43,18 @@ t_bool	init_data(t_data *data)
 	if (!data->win)
 		return (FALSE);
 	init_hook(data);
-	if (!init_image(data, &data->minimap, MINIMAP_WIDTH, MINIMAP_HEIGHT))
-		return (FALSE);
-	if (!init_image(data, &data->render, WIN_WIDTH, WIN_HEIGHT))
+	if (!init_image(data, &data->final_render, WIN_WIDTH, WIN_HEIGHT))
 		return (FALSE);
 	init_cam(&data->cam);
-	data->textures[0] = xpm_to_image(data, NORTH_TEXT);
-	data->textures[1] = xpm_to_image(data, SOUTH_TEXT);
-	data->textures[2] = xpm_to_image(data, EAST_TEXT);
-	data->textures[3] = xpm_to_image(data, WEST_TEXT);
+	data->render_vars.render_map = calloc(RENDER_WIDTH * RENDER_HEIGHT, sizeof(uint32_t));
+	data->render_vars.render_width = RENDER_WIDTH;
+	data->render_vars.render_height = RENDER_HEIGHT;
+	data->render_vars.cube_height = CUB_HEIGHT;
+	data->render_vars.ceiling = (t_color){0xff0000};
+	data->render_vars.floor = (t_color){FLOOR};
+	data->render_vars.textures[0] = xpm_to_image(data, NORTH_TEXT);
+	data->render_vars.textures[1] = xpm_to_image(data, SOUTH_TEXT);
+	data->render_vars.textures[2] = xpm_to_image(data, EAST_TEXT);
+	data->render_vars.textures[3] = xpm_to_image(data, WEST_TEXT);
 	return (TRUE);
 }

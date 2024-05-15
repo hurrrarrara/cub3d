@@ -43,28 +43,19 @@ void	draw_face_verti(t_img *img, int16_t x, int16_t y, uint16_t width, int color
 	}
 }
 
-void	draw_chunk(t_img *img, t_chunk chunk, const uint16_t width)
+void	draw_chunk(t_img *img, t_point2 pos, uint8_t type, const uint16_t width)
 {
-	const uint32_t	color = (chunk.type > 1) * (BLOCK_B | (chunk.type * BLOCK_R)) + (chunk.type == 1) * FLOOR + (chunk.type == 1 && chunk.face != 0) * TOP_COLOR;
+	const uint32_t	color = (type > 1) * (BLOCK_B | (type * BLOCK_R)) + (type == 1) * FLOOR + (type == 1);
 	int16_t	i;
 
 	i = 0;
 	while (i < (width) * (width))
 	{
-		((unsigned int *)img->addr)[(chunk.x * (width + 2)) + (i % (width)) + ((chunk.y * (width + 2) +( i / (width))) * img->width)] = color;
+		((unsigned int *)img->addr)[(pos.x * (width + 2)) + (i % (width)) + ((pos.y * (width + 2) +( i / (width))) * img->width)] = color;
 		i++;
 	}
-	if (chunk.type <= 1)
+	if (type <= 1)
 		return ;
-	if (chunk.face & NORTH)
-		draw_face_hori(img, chunk.x, chunk.y * (width + 2), width, NORTH_COLOR);
-	if (chunk.face & SOUTH)
-		draw_face_hori(img, chunk.x, (chunk.y * (width + 2)) + width - 2, width, SOUTH_COLOR);
-	if (chunk.face & WEST)
-		draw_face_verti(img, chunk.x * (width +2), chunk.y, width, WEST_COLOR);
-	if (chunk.face & EAST)
-		draw_face_verti(img, chunk.x * (width + 2) + width, chunk.y, width, EAST_COLOR);
-
 }
 
 
@@ -103,7 +94,7 @@ void	draw_minimap(t_data *data)
 	i = -1;
 	while (++i < data->map.allocated)
 	{
-		draw_chunk(&data->minimap, data->map.map[i], width_square - 2);
+		draw_chunk(&data->minimap, (t_point2){.x =i%data->map.width, .y=i/data->map.width}, data->map.map[i], width_square - 2);
 	}
 	draw_cam(&data->minimap, data->cam.world_pos, width_square);
 }

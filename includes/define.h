@@ -4,8 +4,8 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-# define RENDER_WIDTH 1920
-# define RENDER_HEIGHT 1080
+# define RENDER_WIDTH 1080
+# define RENDER_HEIGHT 1920
 
 # define CAM_WIDTH 1920
 # define CAM_HEIGHT 1080
@@ -41,7 +41,7 @@
 # define WEST_COLOR 0x2b9eb3
 # define TOP_COLOR 0xa000
 
-# define CUB_HEIGHT 3000
+# define CUB_HEIGHT 4096
 
 # define NORTH_TEXT "./textures/brick.xpm"
 # define SOUTH_TEXT "./textures/brick.xpm"

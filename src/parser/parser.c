@@ -38,25 +38,17 @@ t_bool	parser(t_map *map, const char *file)
 
 	if (fd < 0 || !get_map_width_height(map, file))
 		return (FALSE);
-	map->map = calloc(map->width * map->height, sizeof(t_chunk));
+	map->map = calloc(map->width * map->height, sizeof(uint8_t));
 	if (!map->map)
 		return (FALSE);
 	map->allocated = map->width * map->height;
 	memset(map->map, -1, sizeof(int8_t) * map->height * map->width);
 	read(fd, &c, 1);
 	i = 0;
-	while (i < map->allocated)
-	{
-		map->map[i].x = i % map->width;
-		map->map[i].y = i / map->width;
-		map->map[i].mask = 0;
-		i++;
-	}
-	i = 0;
 	while (c && i < map->allocated)
 	{
 		if (c != ' ' && c != '\n')
-			map->map[i].type = c - '0' + 1;
+			map->map[i] = c - '0' + 1;
 		i += (c != '\n') + ((map->width - ((i - 1) % map->width) -1) * (c == '\n'));
 		if (read(fd, &c, 1) <= 0)
 			break ;

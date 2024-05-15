@@ -62,7 +62,7 @@ parser		:= parser
 
 minimap		:= draw_minimap
 
-raycast		:= raycast
+raycast		:= raycast imath
 
 hook		:= key_hook mouse_hook no_event
 
