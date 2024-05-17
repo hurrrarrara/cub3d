@@ -42,7 +42,7 @@ t_bool	parser(t_map *map, const char *file)
 	if (!map->map)
 		return (FALSE);
 	map->allocated = map->width * map->height;
-	memset(map->map, -1, sizeof(int8_t) * map->height * map->width);
+	// memset(map->map, -1, sizeof(int8_t) * map->height * map->width);
 	read(fd, &c, 1);
 	i = 0;
 	while (c && i < map->allocated)

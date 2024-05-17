@@ -26,7 +26,7 @@ HOOK_ODIR			:= $(ODIR)hook/
 
 CC		:= cc
 DEBUG	:= #-fsanitize=address
-CFLAGS	:= $(DEBUG) -O3 #-g3 #-Wall -Werror -Wextra
+CFLAGS	:= $(DEBUG) -g3 #-Wall -Werror -Wextra
 LFLAGS	:= -L$(MLXDIR) -lmlx_Linux -lm  -lX11 -lXext
 IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I./fast_obj
 
@@ -62,7 +62,7 @@ parser		:= parser
 
 minimap		:= draw_minimap
 
-raycast		:= raycast imath
+raycast		:= raycast imath dda draw_line
 
 hook		:= key_hook mouse_hook no_event
 

@@ -11,19 +11,12 @@ int	mouse_move_hook(int x, int y, t_data *data)
 	return (0);
 }
 
-int	mouse_button_hook(int button, int x, int y, t_rendervars *render_vars)
+int	mouse_button_hook(int button, int x, int y, t_data *data)
 {
-	if (button == 4 && WIN_HEIGHT / render_vars->render_width != 8)
-	{
-		render_vars->render_height /= 2;
-		render_vars->render_width /= 2;
-		render_vars->cube_height /= 2;
-	}
-	if (button == 5 && WIN_HEIGHT / render_vars->render_width != 1)
-	{
-		render_vars->render_height *= 2;
-		render_vars->render_width *= 2;
-		render_vars->cube_height *= 2;
-	}
+	printf("%f\n", data->cam.fov);
+	if (button == 4 && data->cam.fov >= 51)
+		data->cam.fov -= 5;
+	if (button == 5 && data->cam.fov <= 160)
+		data->cam.fov += 5;
 	return (0);
 }

@@ -84,12 +84,11 @@ typedef struct s_mouse
 typedef struct s_rendervars
 {
 	uint32_t	*render_map;
-	uint16_t	render_width;
-	uint16_t	render_height;
 	t_color		floor;
 	t_color		ceiling;
 	t_img		textures[4];
-	uint16_t	cube_height;
+	uint16_t	anim_offset;
+	uint16_t	width;
 }t_rendervars;
 
 typedef struct s_data
@@ -102,6 +101,7 @@ typedef struct s_data
 	t_mouse			mouse;
 	t_img			final_render;
 	t_rendervars	render_vars;
+	t_img			door_notif;
 }t_data;
 
 #endif

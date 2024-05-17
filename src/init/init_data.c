@@ -12,7 +12,7 @@ void	init_cam(t_camera *camera)
 	camera->world_pos = (t_vec3){
 		3,
 		0.1,
-		3.5
+		10.5
 	};
 	camera->fov = 120;
 }
@@ -46,15 +46,18 @@ t_bool	init_data(t_data *data)
 	if (!init_image(data, &data->final_render, WIN_WIDTH, WIN_HEIGHT))
 		return (FALSE);
 	init_cam(&data->cam);
-	data->render_vars.render_map = calloc(RENDER_WIDTH * RENDER_HEIGHT, sizeof(uint32_t));
-	data->render_vars.render_width = RENDER_WIDTH;
-	data->render_vars.render_height = RENDER_HEIGHT;
-	data->render_vars.cube_height = CUB_HEIGHT;
-	data->render_vars.ceiling = (t_color){0xff0000};
+	// data->render_vars.render_map = calloc(RENDER_WIDTH * RENDER_HEIGHT, sizeof(uint32_t));
+	data->render_vars.render_map = (uint32_t *)data->final_render.addr;
+	// data->render_vars.render_width = RENDER_HEIGHT;
+	// data->render_vars.render_height = RENDER_WIDTH;
+	// data->render_vars.cube_height = CUB_HEIGHT;
+	data->render_vars.width = 549;
+	data->render_vars.ceiling = (t_color){0xfa00a0};
 	data->render_vars.floor = (t_color){FLOOR};
 	data->render_vars.textures[0] = xpm_to_image(data, NORTH_TEXT);
 	data->render_vars.textures[1] = xpm_to_image(data, SOUTH_TEXT);
 	data->render_vars.textures[2] = xpm_to_image(data, EAST_TEXT);
 	data->render_vars.textures[3] = xpm_to_image(data, WEST_TEXT);
+	data->door_notif = xpm_to_image(data, DOOR_NOTIF);
 	return (TRUE);
 }

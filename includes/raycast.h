@@ -9,7 +9,6 @@ typedef struct
 	t_vec2	add;
 	t_vec2	ray;
 	t_vec2	origin;
-	// int8_t	height;
 	float	angle;
 }t_ray;
 
@@ -17,8 +16,8 @@ typedef struct s_drawvars
 {
 	float		dist;
 	float		angle;
-	float		x;
-	t_img		*textures;
+	int32_t	x;
+	t_img		textures;
 }t_drawvars;
 
 typedef struct s_ddavars
@@ -29,6 +28,16 @@ typedef struct s_ddavars
 	t_point2	pos;
 }t_ddavrs;
 
-void	raycaster(const t_camera camera, t_map map, t_rendervars *render_vars);
+typedef struct s_drawlinevars
+{
+	int32_t	height;
+	int32_t	start;
+	int32_t	end;
+	float	step;
+}t_drawlinevars;
+
+void	raycaster(const t_camera camera, t_map map, t_rendervars render_vars);
+void	dda(t_ray ray, t_map map, uint16_t col, t_rendervars render_vars);
+void	draw_line(uint16_t col, t_rendervars render_vars, t_drawvars draw_vars);
 
 #endif

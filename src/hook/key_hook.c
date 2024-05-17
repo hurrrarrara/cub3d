@@ -1,6 +1,31 @@
 #include "struct.h"
 #include "define.h"
+#include <math.h>
+#include <stdint.h>
 
+
+void	toogle_door(t_data *data)
+{
+	const uint16_t	x = (int)(data->cam.world_pos.x);
+	const uint16_t	y = (int)(data->cam.world_pos.z);
+
+	if (data->map.map[x + 1 + y * data->map.width] == 3)
+		data->map.map[x + 1 + y * data->map.width] = 4;
+	else if (data->map.map[x + 1 + y * data->map.width] == 4)
+		data->map.map[x + 1 + y * data->map.width] = 3;
+	if (data->map.map[x - 1 + y * data->map.width] == 3)
+		data->map.map[x - 1 + y * data->map.width] = 4;
+	else if (data->map.map[x - 1 + y * data->map.width] == 4)
+		data->map.map[x - 1 + y * data->map.width] = 3;
+	if (data->map.map[x + (y + 1) * data->map.width] == 3)
+		data->map.map[x + (y + 1) * data->map.width] = 4;
+	else if (data->map.map[x + (y + 1) * data->map.width] == 4)
+		data->map.map[x + (y + 1) * data->map.width] = 3;
+	if (data->map.map[x + (y - 1) * data->map.width] == 3)
+		data->map.map[x + (y - 1) * data->map.width] = 4;
+	else if (data->map.map[x + (y - 1) * data->map.width] == 4)
+		data->map.map[x + (y - 1) * data->map.width] = 3;
+}
 
 int	key_press_hook(int key, t_data *data)
 {
@@ -12,5 +37,7 @@ int	key_press_hook(int key, t_data *data)
 		data->cam.move.y -= MOVE_SPEED;
 	if (key == KEY_RIGHT)
 		data->cam.move.y += MOVE_SPEED;
+	if (key == 'f')
+		toogle_door(data);
 	return (0);
 }
