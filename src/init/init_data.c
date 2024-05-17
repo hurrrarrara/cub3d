@@ -3,7 +3,6 @@
 #include "mlx.h"
 #include "init.h"
 #include <stdint.h>
-#include <string.h>
 #include "quit.h"
 
 void	init_cam(t_camera *camera)
@@ -41,7 +40,7 @@ void	init_render_vars(t_data *data)
 
 t_bool	init_data(t_data *data)
 {
-	memset(data, 0, sizeof(t_data));
+	ft_memset(data, 0, sizeof(t_data));
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		quit(data, 1);

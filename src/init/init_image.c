@@ -24,7 +24,7 @@ t_img	xpm_to_image(t_data *data, const char *texture_path)
 {
 	t_img	texture;
 
-	bzero(&texture, sizeof(texture));
+	ft_bzero(&texture, sizeof(texture));
 	texture.img = mlx_xpm_file_to_image(\
 		data->mlx, (char *)texture_path, &texture.width, &texture.height);
 	if (!texture.img)

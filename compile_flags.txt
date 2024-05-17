@@ -1,2 +1,3 @@
 -I./mlx
 -I./includes
+-I./libft

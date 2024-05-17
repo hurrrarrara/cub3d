@@ -3,8 +3,9 @@ NAME = raycast
 IDIR	:= ./includes/
 SDIR	:= ./src/
 ODIR	:= ./obj/
-MLXDIR	:= ./mlx/
 
+MLXDIR	:= ./mlx/
+LIBFT_DIR := ./libft/
 
 
 INIT_ODIR		:= $(ODIR)init/
@@ -16,8 +17,8 @@ HOOK_ODIR			:= $(ODIR)hook/
 CC		:= cc
 DEBUG	:= #-g3 -fsanitize=address,leak
 CFLAGS	:= $(DEBUG) -Wall -Werror -Wextra
-LFLAGS	:= -L$(MLXDIR) -lmlx_Linux -lm  -lX11 -lXext
-IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I./fast_obj
+LFLAGS	:= -L$(MLXDIR) -L$(LIBFT_DIR) -lmlx_Linux -lm -lft -lX11 -lXext
+IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I$(LIBFT_DIR)
 
 
 
@@ -33,7 +34,7 @@ hook		:= key_hook mouse_hook no_event pause
 
 main		:= main quit math_utils
 
-includes	:= define.h struct.h parser.h init.h hook.h
+includes	:= define.h hook.h init.h math_utils.h minimap.h parser.h quit.h raycast.h struct.h
 
 
 INIT_O			= $(addprefix $(INIT_ODIR), $(addsuffix .o, $(init)))
@@ -44,15 +45,18 @@ HOOK_O		= $(addprefix $(HOOK_ODIR), $(addsuffix .o, $(hook)))
 
 MAIN_O			= $(addprefix $(ODIR), $(addsuffix .o, $(main)))
 
+LIBFT_A	= $(LIBFT_DIR)libft.a
+LIBFT_H = $(LIBFT_DIR)libft.h
+
 INCL	= $(addprefix $(IDIR), $(includes))
 
 OBJ		= $(INIT_O) $(PARSER_O) $(MAIN_O)  $(MINIMAP_O) $(RAYCAST_O) $(HOOK_O)
 
 .PHONY: all re clean fclan MLX DIR
 
-all: DIR MLX $(NAME)
+all: LIBFT DIR MLX $(NAME)
 
-$(NAME):  $(OBJ)
+$(NAME):  $(LIBFT_A) $(LIBFT_H) $(OBJ)
 	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJ) $(LFLAGS)
 
 $(ODIR)%.o: $(SDIR)%.c Makefile $(INCL)
@@ -69,10 +73,15 @@ DIR:
 MLX:
 	cd $(MLXDIR) && ./configure
 
+LIBFT:
+	@make -C $(LIBFT_DIR)
+
 clean:
 	rm -rf $(ODIR)
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re:	fclean all

@@ -2,12 +2,7 @@
 # define STRUCT_H
 
 # include <stdint.h>
-
-typedef enum e_bool
-{
-	FALSE,
-	TRUE
-}	t_bool;
+# include "libft.h"
 
 typedef union u_color
 {
