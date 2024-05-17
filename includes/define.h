@@ -35,24 +35,21 @@
 # define KEY_LEFT 'a'
 # define KEY_RIGHT 'd'
 
-# define NORTH_COLOR 0x44af69
-# define SOUTH_COLOR 0xf8333c
-# define EAST_COLOR 0xfcab10
-# define WEST_COLOR 0x2b9eb3
-# define TOP_COLOR 0xa000
+# define DOOR_OPEN_COLOR 0x00f0ff
+# define DOOR_CLOSE_COLOR 0x0faf00
+# define WALL_COLOR 0xa000ff
+# define FLOOR_COLOR 0xafafaf
 
 # define CUB_HEIGHT 4096
 # define ANIM_OFFSET 549
 
-# define NORTH_TEXT "./textures/animated.xpm"
-# define SOUTH_TEXT "./textures/animated.xpm"
-# define EAST_TEXT "./textures/animated.xpm"
-# define WEST_TEXT "./textures/animated.xpm"
+# define NORTH_TEXT "./textures/brick.xpm"
+# define SOUTH_TEXT "./textures/brick.xpm"
+# define EAST_TEXT "./textures/brick.xpm"
+# define WEST_TEXT "./textures/brick.xpm"
 
 # define DOOR_NOTIF "./textures/door.xpm"
-
-#include <math.h>
-
-# define N -M_PI / 2
+# define PAUSE_SCREEN "./textures/pause.xpm"
+# define DOOR_TEXT "./textures/animated.xpm"
 
 #endif

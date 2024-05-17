@@ -3,9 +3,6 @@
 #include "struct.h"
 #include <math.h>
 #include <stdint.h>
-#include <stdio.h>
-#include "math_utils.h"
-
 
 t_ray	set_ray(const t_camera cam, uint16_t nb_ray)
 {

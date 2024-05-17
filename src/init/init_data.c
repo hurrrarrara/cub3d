@@ -3,9 +3,8 @@
 #include "mlx.h"
 #include "init.h"
 #include <stdint.h>
-#include <stdlib.h>
 #include <string.h>
-
+#include "quit.h"
 
 void	init_cam(t_camera *camera)
 {
@@ -17,40 +16,9 @@ void	init_cam(t_camera *camera)
 	camera->fov = 120;
 }
 
-t_img	xpm_to_image(t_data *data, const char *texture_path)
+void	init_render_vars(t_data *data)
 {
-	t_img	texture;
-
-	bzero(&texture, sizeof(texture));
-	
-	texture.img = mlx_xpm_file_to_image(data->mlx, (char *)texture_path, &texture.width, &texture.height);
-	if (!texture.img)
-		return (texture);
-
-	texture.addr = mlx_get_data_addr(texture.img, &texture.bits_per_pixel, &texture.line_length, &texture.endian);
-	if (!texture.addr)
-		return (texture);
-
-	return (texture);
-}
-t_bool	init_data(t_data *data)
-{
-	memset(data, 0, sizeof(t_data));
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		return (FALSE);
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "graph");
-	if (!data->win)
-		return (FALSE);
-	init_hook(data);
-	if (!init_image(data, &data->final_render, WIN_WIDTH, WIN_HEIGHT))
-		return (FALSE);
-	init_cam(&data->cam);
-	// data->render_vars.render_map = calloc(RENDER_WIDTH * RENDER_HEIGHT, sizeof(uint32_t));
 	data->render_vars.render_map = (uint32_t *)data->final_render.addr;
-	// data->render_vars.render_width = RENDER_HEIGHT;
-	// data->render_vars.render_height = RENDER_WIDTH;
-	// data->render_vars.cube_height = CUB_HEIGHT;
 	data->render_vars.width = 549;
 	data->render_vars.ceiling = (t_color){0xfa00a0};
 	data->render_vars.floor = (t_color){FLOOR};
@@ -58,6 +26,32 @@ t_bool	init_data(t_data *data)
 	data->render_vars.textures[1] = xpm_to_image(data, SOUTH_TEXT);
 	data->render_vars.textures[2] = xpm_to_image(data, EAST_TEXT);
 	data->render_vars.textures[3] = xpm_to_image(data, WEST_TEXT);
+	data->render_vars.textures[4] = xpm_to_image(data, DOOR_TEXT);
 	data->door_notif = xpm_to_image(data, DOOR_NOTIF);
+	data->pause_screen = xpm_to_image(data, PAUSE_SCREEN);
+	if (!data->render_vars.textures[0].img || \
+		!data->render_vars.textures[1].img || \
+		!data->render_vars.textures[2].img || \
+		!data->render_vars.textures[3].img || \
+		!data->render_vars.textures[4].img || \
+		!data->door_notif.img || \
+		!data->pause_screen.img)
+		quit(data, 1);
+}
+
+t_bool	init_data(t_data *data)
+{
+	memset(data, 0, sizeof(t_data));
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		quit(data, 1);
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "graph");
+	if (!data->win)
+		quit(data, 1);
+	init_hook(data);
+	if (!init_image(data, &data->final_render, WIN_WIDTH, WIN_HEIGHT))
+		quit(data, 1);
+	init_cam(&data->cam);
+	init_render_vars(data);
 	return (TRUE);
 }

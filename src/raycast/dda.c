@@ -1,5 +1,6 @@
 #include "raycast.h"
 #include <math.h>
+#include <stdint.h>
 #include "struct.h"
 
 static __inline__ t_ddavrs	set_dda_vars(t_ray ray)
@@ -27,42 +28,51 @@ static __inline__ t_ddavrs	set_dda_vars(t_ray ray)
 	return (final);
 }
 
-static __inline__ t_drawvars	\
-	set_draw_vars(t_ray ray, t_ddavrs dda_vars, t_rendervars render_vars, t_bool side)
+static __inline__ \
+	t_drawvars	set_draw_vars(\
+		t_ray ray, \
+		t_ddavrs dda_vars, \
+		t_rendervars render_vars, \
+		t_point2 wall)
 {
-	t_drawvars	draw_vars;
-	float		x;
+	t_drawvars		draw_vars;
+	float			x;
+	const uint8_t	text_nb = \
+		(wall.x && wall.y != 3) * ((dda_vars.step.x == -1) * 2 + \
+		(dda_vars.step.x == 1) * 3) + (!wall.x && wall.y != 3) * \
+		((dda_vars.step.y == -1) * 1) + (wall.y == 3) * 4;
 
-	draw_vars.angle = fminf(1, 1.1 - fabs(((side) * ray.ray.y + (!side) * ray.ray.x) * \
+	draw_vars.angle = fminf(1, \
+		1.1 - fabs(((wall.x) * ray.ray.y + (!wall.x) * ray.ray.x) * \
 		(1 / sqrtf((ray.ray.x * ray.ray.x) + (ray.ray.y * ray.ray.y)))));
-	draw_vars.textures = render_vars.textures[(side) * ((dda_vars.step.x == -1) * 2 + \
-		(dda_vars.step.x == 1) * 3) + (!side) * ((dda_vars.step.y == -1) * 1)];
-	draw_vars.dist = (side) * dda_vars.dist.x + (!side) * dda_vars.dist.y;
-	x = (side) * (float)(ray.origin.y + draw_vars.dist * ray.ray.y) + \
-		(!side) * (float)(ray.origin.x + draw_vars.dist * ray.ray.x);
+	draw_vars.textures = render_vars.textures[text_nb];
+	draw_vars.dist = (wall.x) * dda_vars.dist.x + (!wall.x) * dda_vars.dist.y;
+	x = (wall.x) * (float)(ray.origin.y + draw_vars.dist * ray.ray.y) + \
+		(!wall.x) * (float)(ray.origin.x + draw_vars.dist * ray.ray.x);
 	x -= floorf(x);
 	draw_vars.x = x * render_vars.width;
-	if ((side) * (dda_vars.step.x == -1) + (!side) * (dda_vars.step.y == 1))
+	if ((wall.x) * (dda_vars.step.x == -1) + (!wall.x) * (dda_vars.step.y == 1))
 		draw_vars.x = render_vars.width - draw_vars.x - 1;
-	draw_vars.x += render_vars.anim_offset;
+	draw_vars.x += (text_nb == 4) * render_vars.anim_offset;
 	return (draw_vars);
 }
 
 void	dda(t_ray ray, t_map map, uint16_t col, t_rendervars render_vars)
 {
-	t_ddavrs	dda_v;
 	t_drawvars	draw_vars;
-	t_bool		side;
+	t_ddavrs	dda_v;
+	t_point2	wall;
 
 	dda_v = set_dda_vars(ray);
 	while (1)
 	{
-		side = (dda_v.dist.x < dda_v.dist.y);
-		dda_v.pos.x += side * dda_v.step.x;
-		dda_v.pos.y += (!side) * dda_v.step.y;
-		if (map.map[dda_v.pos.x + (dda_v.pos.y * map.width)] % 4 > 1)
+		wall.x = (dda_v.dist.x < dda_v.dist.y);
+		dda_v.pos.x += wall.x * dda_v.step.x;
+		dda_v.pos.y += (!wall.x) * dda_v.step.y;
+		wall.y = map.map[dda_v.pos.x + (dda_v.pos.y * map.width)] % 4;
+		if (wall.y > 1)
 		{
-			draw_vars = set_draw_vars(ray, dda_v, render_vars, side);
+			draw_vars = set_draw_vars(ray, dda_v, render_vars, wall);
 			draw_line(col, render_vars, draw_vars);
 			break ;
 		}

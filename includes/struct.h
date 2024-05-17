@@ -1,15 +1,15 @@
 #ifndef STRUCT_H
-#define STRUCT_H
+# define STRUCT_H
 
-#include <stdint.h>
+# include <stdint.h>
 
-typedef enum
+typedef enum e_bool
 {
 	FALSE,
 	TRUE
-}t_bool;
+}	t_bool;
 
-typedef union
+typedef union u_color
 {
 	uint32_t	hex;
 	struct
@@ -24,28 +24,28 @@ typedef union
 		int16_t	x;
 		int16_t	y;
 	};
-}t_color;
+}	t_color;
 
-typedef t_color t_point2;
+typedef t_color	t_point2;
 
 typedef struct s_i8point2
 {
 	int8_t	x;
 	int8_t	y;
-}t_i8point2;
+}	t_i8point2;
 
-typedef struct
+typedef struct s_vec3
 {
 	float	x;
 	float	y;
 	float	z;
-}t_vec3;
+}	t_vec3;
 
-typedef struct
+typedef struct s_vec2
 {
 	float	x;
 	float	y;
-}t_vec2;
+}	t_vec2;
 
 typedef struct s_img
 {
@@ -58,38 +58,37 @@ typedef struct s_img
 	int32_t	endian;
 }	t_img;
 
-
 typedef struct s_camera
 {
 	t_vec3	world_pos;
 	t_vec2	move;
 	float	angle;
 	float	fov;
-}t_camera;
+}	t_camera;
 
-typedef struct
+typedef struct s_map
 {
 	uint8_t		*map;
 	uint16_t	width;
 	uint16_t	height;
 	uint16_t	allocated;
-}t_map;
+}	t_map;
 
 typedef struct s_mouse
 {
 	int16_t	x;
 	int16_t	y;
-}t_mouse;
+}	t_mouse;
 
 typedef struct s_rendervars
 {
 	uint32_t	*render_map;
 	t_color		floor;
 	t_color		ceiling;
-	t_img		textures[4];
+	t_img		textures[5];
 	uint16_t	anim_offset;
 	uint16_t	width;
-}t_rendervars;
+}	t_rendervars;
 
 typedef struct s_data
 {
@@ -99,9 +98,11 @@ typedef struct s_data
 	t_img			minimap;
 	t_camera		cam;
 	t_mouse			mouse;
-	t_img			final_render;
 	t_rendervars	render_vars;
+	t_img			final_render;
 	t_img			door_notif;
-}t_data;
+	t_img			pause_screen;
+	uint8_t			pause_toggle;
+}	t_data;
 
 #endif

@@ -4,21 +4,21 @@
 # include "struct.h"
 # include <stdint.h>
 
-typedef struct
+typedef struct s_ray
 {
 	t_vec2	add;
 	t_vec2	ray;
 	t_vec2	origin;
 	float	angle;
-}t_ray;
+}	t_ray;
 
 typedef struct s_drawvars
 {
 	float		dist;
 	float		angle;
-	int32_t	x;
+	int32_t		x;
 	t_img		textures;
-}t_drawvars;
+}	t_drawvars;
 
 typedef struct s_ddavars
 {
@@ -26,7 +26,7 @@ typedef struct s_ddavars
 	t_vec2		delta;
 	t_i8point2	step;
 	t_point2	pos;
-}t_ddavrs;
+}	t_ddavrs;
 
 typedef struct s_drawlinevars
 {
@@ -34,7 +34,7 @@ typedef struct s_drawlinevars
 	int32_t	start;
 	int32_t	end;
 	float	step;
-}t_drawlinevars;
+}	t_drawlinevars;
 
 void	raycaster(const t_camera camera, t_map map, t_rendervars render_vars);
 void	dda(t_ray ray, t_map map, uint16_t col, t_rendervars render_vars);

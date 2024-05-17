@@ -1,8 +1,7 @@
 #include "struct.h"
 #include "define.h"
-#include <math.h>
 #include <stdint.h>
-
+#include "quit.h"
 
 void	toogle_door(t_data *data)
 {
@@ -39,5 +38,9 @@ int	key_press_hook(int key, t_data *data)
 		data->cam.move.y += MOVE_SPEED;
 	if (key == 'f')
 		toogle_door(data);
+	if (key == 65289)
+		data->pause_toggle = (data->pause_toggle == 0);
+	if (key == 65307)
+		quit(data, 0);
 	return (0);
 }
