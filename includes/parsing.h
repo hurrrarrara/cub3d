@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:21:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 15:18:49 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/21 16:59:52 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,9 @@
 #include "struct.h"
 #include "unistd.h"
 
-// typedef struct s_map
-// {
-// 	char	*no;
-// 	char	*so;
-// 	char	*we;
-// 	char	*ea;
-// 	char	*c;
-// 	char	*f;
-// 	char	*map;
-// 	size_t	size[2];
-// }				t_map;
-
 int		line_empty(char *line);
 int		line_ismap(char *line);
-int		check_err_end_file(char *line, int fd, t_map *map);
+int		check_err_end_file(char *line, int fd);
 int		check_err_tex(t_map *map);
 int		check_err_extension(char *file);
 int		check_err_sides(t_map *map, size_t i, size_t row, size_t col);

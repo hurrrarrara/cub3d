@@ -6,7 +6,7 @@
 /*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/19 18:21:29 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 17:00:59 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int	check_err_sides(t_map *map, size_t i, size_t row, size_t col)
 	char	c;
 
 	c = map->map[i + ((row - 1) * col)];
-	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'O' && c != 'S')
+	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'W' && c != 'S')
 		return (1);
 	c = map->map[i + ((row + 1) * col)];
-	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'O' && c != 'S')
+	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'W' && c != 'S')
 		return (1);
 	c = map->map[i - 1 + (row * col)];
-	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'O' && c != 'S')
+	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'W' && c != 'S')
 		return (1);
 	c = map->map[i + 1 + (row * col)];
-	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'O' && c != 'S')
+	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'W' && c != 'S')
 		return (1);
 	return (0);
 }
@@ -94,7 +94,6 @@ int	check_err_end_file(char *line, int fd, t_map *map)
 		if (!line_empty(line))
 		{
 			close(fd);
-			free_map(map);
 			free(line);
 			return (1);
 		}
