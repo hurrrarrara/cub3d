@@ -6,7 +6,7 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:50:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 15:17:02 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/21 15:50:58 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	free_map(t_map *map)
 	free(map->ea);
 	free(map->we);
 	free(map->map);
+	free(map->f);
+	free(map->c);
 }
 
 int	parsing(t_map *map, char **argv)

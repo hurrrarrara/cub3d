@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:19:35 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 13:47:58 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:52:02 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	**ft_realloc_2d(char **map, char *line)
 		while (map[++i])
 			newmap[i] = map[i];
 		newmap[i] = line;
+		free(map);
 		return (newmap);
 	}
 }

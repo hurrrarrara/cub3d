@@ -22,11 +22,12 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	ft_memset(&data, 0, sizeof(t_data));
 	if (ac != 2)
 		return (1);
-	init_data(&data);
 	if (parsing(&data.map, av))
 		return (1);
+	init_data(&data);
 	data.map.width = data.map.size[0];
 	data.map.height = data.map.size[1];
 	data.map.allocated = data.map.width * data.map.height;

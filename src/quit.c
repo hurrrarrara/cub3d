@@ -1,4 +1,5 @@
 #include "mlx.h"
+#include "parsing.h"
 #include "struct.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -26,8 +27,8 @@ void	clean_img(t_data *data)
 
 void	free_data(t_data *data)
 {
-	if (data->map.map)
-		free(data->map.map);
+	// if (data->map.map)
+	// 	free(data->map.map);
 	if (data->mlx)
 		clean_img(data);
 	if (data->win)
@@ -37,6 +38,7 @@ void	free_data(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+	free_map(&data->map);
 }
 
 void	quit(t_data *data, const uint8_t code)

@@ -1,3 +1,4 @@
+#include "src/basics/basics.h"
 #include "struct.h"
 #include "define.h"
 #include "mlx.h"
@@ -5,7 +6,7 @@
 #include <stdint.h>
 #include "quit.h"
 
-void	init_cam(t_camera *camera)
+void	init_cam(t_map *map, t_camera *camera)
 {
 	camera->world_pos = (t_vec3){
 		5,
@@ -13,6 +14,16 @@ void	init_cam(t_camera *camera)
 		10.5
 	};
 	camera->fov = 120;
+	int	i;
+
+	i = 0;
+	while (i < map->allocated)
+	{
+		if (ft_strchr("NSEW",map->map[i]))
+		{
+			
+		}
+	}
 }
 
 void	init_render_vars(t_data *data)
@@ -40,7 +51,6 @@ void	init_render_vars(t_data *data)
 
 t_bool	init_data(t_data *data)
 {
-	ft_memset(data, 0, sizeof(t_data));
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		quit(data, 1);
@@ -50,7 +60,7 @@ t_bool	init_data(t_data *data)
 	init_hook(data);
 	if (!init_image(data, &data->final_render, WIN_WIDTH, WIN_HEIGHT))
 		quit(data, 1);
-	init_cam(&data->cam);
+	init_cam(&data->map, &data->cam);
 	init_render_vars(data);
 	return (TRUE);
 }

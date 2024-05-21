@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 14:38:41 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:58:04 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,29 @@ size_t	ft_nblen(char *str)
 
 int	fill_color(char *line, unsigned char *color, size_t *count, size_t *i)
 {
-	size_t	start;
+	size_t	s;
+	char	*o;
 
-	start = 0;
 	while (line[*i] && line[*i] == ' ')
 		(*i)++;
-	start = *i;
+	s = *i;
 	while (line[*i] >= '0' && line[*i] <= '9')
 		(*i)++;
-	while (line[*i] && line[*i] == ' ' && *i != start)
+	while (line[*i] && line[*i] == ' ' && *i != s)
 		(*i)++;
 	if (*count == 2 && line[*i] == ',')
 		return (0);
-	else if ((line[*i] == ',' || line[*i] == '\n') && *i != start)
+	else if ((line[*i] == ',' || line[*i] == '\n') && *i != s)
 		(*i)++;
 	else
 		return (0);
 	if (*count < 3)
 	{
-		color[*count] = ft_atouc(&line[start]);
-		if (ft_strncmp(ft_itoa(color[*count]), &line[start], \
-			ft_nblen(&line[start])) != 0)
+		color[*count] = ft_atouc(&line[s]);
+		o = ft_itoa(color[*count]);
+		if (ft_strncmp(o, &line[s], ft_nblen(&line[s])) != 0)
 			return (0);
+		free(o);
 	}
 	return (1);
 }

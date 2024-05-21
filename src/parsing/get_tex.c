@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:30:07 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 14:44:03 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:58:52 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int	get_tex(int fd, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	return (1);
 }
