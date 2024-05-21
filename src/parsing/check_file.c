@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 17:00:59 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 17:14:12 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_err_tex(t_map *map)
 	return (0);
 }
 
-int	check_err_end_file(char *line, int fd, t_map *map)
+int	check_err_end_file(char *line, int fd)
 {
 	while (line)
 	{

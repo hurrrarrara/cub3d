@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:19:35 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 17:10:39 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 17:27:56 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-char	**ft_realloc_2d_2(char **newmap, char **map, char *line)
+char	**ft_realloc_2d_2(char ***newmap, char **map, char *line)
 {
 	size_t	i;
 
 	i = 0;
 	while (map[i])
 		i++;
-	newmap = malloc(sizeof (char *) * (i + 2));
-	if (!newmap)
+	*newmap = malloc(sizeof (char *) * (i + 2));
+	if (!*newmap)
 	{
 		i = 0;
 		while (map[i])
@@ -28,20 +28,20 @@ char	**ft_realloc_2d_2(char **newmap, char **map, char *line)
 		free(map);
 		return (NULL);
 	}
-	newmap[i + 1] = NULL;
+	(*newmap)[i + 1] = NULL;
 	i = -1;
 	while (map[++i])
-		newmap[i] = map[i];
-	newmap[i] = line;
+		(*newmap)[i] = map[i];
+	(*newmap)[i] = line;
 	free(map);
-	return (newmap);
+	return (*newmap);
 }
 
 char	**ft_realloc_2d(char **map, char *line)
 {
 	char	**newmap;
-	size_t	i;
 
+	newmap = NULL;
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	if (!map)
@@ -53,25 +53,7 @@ char	**ft_realloc_2d(char **map, char *line)
 		newmap[0] = line;
 		return (newmap);
 	}
-	ft_realloc_2d_2(newmap, map, line);
-	/*i = 0;
-	while (map[i])
-		i++;
-	newmap = malloc(sizeof (char *) * (i + 2));
-	if (!newmap)
-	{
-		i = 0;
-		while (map[i])
-			free(map[i++]);
-		free(map);
-		return (NULL);
-	}
-	newmap[i + 1] = NULL;
-	i = -1;
-	while (map[++i])
-		newmap[i] = map[i];
-	newmap[i] = line;
-	free(map);*/
+	ft_realloc_2d_2(&newmap, map, line);
 	return (newmap);
 }
 
@@ -136,7 +118,7 @@ int	get_map(int fd, t_map *map)
 		map->size[1]++;
 		line = get_next_line(fd);
 	}
-	if (get_map_2(line, map, map2d, fd))
+	if (!get_map_2(line, map, map2d, fd))
 		return (0);
 	return (1);
 }

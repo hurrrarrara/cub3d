@@ -26,7 +26,7 @@
 # define SOUTH 0b1000
 # define WEST 0b10000
 
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.0005
 # define HIT_BOX_SIZE 0.05
 

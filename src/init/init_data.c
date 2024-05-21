@@ -3,16 +3,12 @@
 #include "define.h"
 #include "mlx.h"
 #include "init.h"
+#include <math.h>
 #include <stdint.h>
 #include "quit.h"
 
 void	init_cam(t_map *map, t_camera *camera)
 {
-	camera->world_pos = (t_vec3){
-		5,
-		0.1,
-		10.5
-	};
 	camera->fov = 120;
 	int	i;
 
@@ -21,8 +17,17 @@ void	init_cam(t_map *map, t_camera *camera)
 	{
 		if (ft_strchr("NSEW",map->map[i]))
 		{
-			
+			camera->world_pos = (t_vec3){
+				(i % map->width) + 0.5,
+				0.1,
+				(int)(i / map->width) + 0.5
+			};
+			camera->angle = ((map->map[i] == 'S') * M_PI / 2) - \
+				((map->map[i] == 'N') * M_PI / 2) + \
+				((map->map[i] == 'W') * M_PI);
+			map->map[i] = '0';
 		}
+		i++;
 	}
 }
 
@@ -30,12 +35,12 @@ void	init_render_vars(t_data *data)
 {
 	data->render_vars.render_map = (uint32_t *)data->final_render.addr;
 	data->render_vars.width = 549;
-	data->render_vars.ceiling = (t_color){0xfa00a0};
-	data->render_vars.floor = (t_color){FLOOR};
-	data->render_vars.textures[0] = xpm_to_image(data, NORTH_TEXT);
-	data->render_vars.textures[1] = xpm_to_image(data, SOUTH_TEXT);
-	data->render_vars.textures[2] = xpm_to_image(data, EAST_TEXT);
-	data->render_vars.textures[3] = xpm_to_image(data, WEST_TEXT);
+	data->render_vars.ceiling = (t_color){.r = data->map.c[0], .g = data->map.c[1], .b = data->map.c[2]};
+	data->render_vars.floor = (t_color){.r = data->map.f[0], .g = data->map.f[1], .b = data->map.f[2]};
+	data->render_vars.textures[0] = xpm_to_image(data, data->map.no);
+	data->render_vars.textures[1] = xpm_to_image(data, data->map.so);
+	data->render_vars.textures[2] = xpm_to_image(data, data->map.ea);
+	data->render_vars.textures[3] = xpm_to_image(data, data->map.we);
 	data->render_vars.textures[4] = xpm_to_image(data, DOOR_TEXT);
 	data->door_notif = xpm_to_image(data, DOOR_NOTIF);
 	data->pause_screen = xpm_to_image(data, PAUSE_SCREEN);

@@ -27,10 +27,10 @@ int	main(int ac, char **av)
 		return (1);
 	if (parsing(&data.map, av))
 		return (1);
-	init_data(&data);
 	data.map.width = data.map.size[0];
 	data.map.height = data.map.size[1];
 	data.map.allocated = data.map.width * data.map.height;
+	init_data(&data);
 	printf("%lu\n",ft_strlen((char *)data.map.map));
 	for (size_t i = 0; i < data.map.width * data.map.height; i++)
 	{
