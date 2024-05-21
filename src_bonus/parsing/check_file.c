@@ -6,7 +6,7 @@
 /*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 17:38:01 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/21 19:10:33 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ int	check_err_map(t_map *map)
 		while (++col < map->size[0])
 		{
 			c = map->map[col + (row * map->size[0])];
-			if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '2')
 			{
 				if (check_err_sides(map, col, row, map->size[0]))
 					return (1);
 			}
 			else if (c != ' ' && c != '1')
 				return (1);
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '2')
 				player++;
 		}
 	}
