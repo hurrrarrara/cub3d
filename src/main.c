@@ -1,4 +1,5 @@
 #include "raycast.h"
+#include "src/basics/basics.h"
 #include "struct.h"
 #include "init.h"
 #include "parser.h"
@@ -6,6 +7,8 @@
 #include "define.h"
 #include "math_utils.h"
 #include "quit.h"
+#include "parsing.h"
+#include <stdio.h>
 
 void	set_minimap(t_data *data)
 {
@@ -22,8 +25,26 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	init_data(&data);
-	if (!parser(&data.map, av[1]))
+	if (parsing(&data.map, av))
 		return (1);
+	data.map.width = data.map.size[0];
+	data.map.height = data.map.size[1];
+	data.map.allocated = data.map.width * data.map.height;
+	printf("%lu\n",ft_strlen((char *)data.map.map));
+	for (size_t i = 0; i < data.map.width * data.map.height; i++)
+	{
+		if (i && !(i % data.map.width))
+			printf("\n");
+		printf("%c",data.map.map[i]);
+	}
+	for (size_t i = 0; i < data.map.width * data.map.height; i++)
+	{
+		if (data.map.map[i] == 32)
+			data.map.map[i] = 0;
+		else
+			data.map.map[i] -= '0' - 1;
+	}
+	printf("\n");
 	set_minimap(&data);
 	mlx_mouse_hide(data.mlx, data.win);
 	raycaster(data.cam, data.map, data.render_vars);

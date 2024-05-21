@@ -8,7 +8,7 @@
 void	init_cam(t_camera *camera)
 {
 	camera->world_pos = (t_vec3){
-		3,
+		5,
 		0.1,
 		10.5
 	};

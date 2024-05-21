@@ -9,10 +9,10 @@ typedef union u_color
 	uint32_t	hex;
 	struct
 	{
-		uint8_t	a;
+		uint8_t	b;
 		uint8_t	r;
 		uint8_t	g;
-		uint8_t	b;
+		uint8_t	a;
 	};
 	struct
 	{
@@ -64,9 +64,16 @@ typedef struct s_camera
 typedef struct s_map
 {
 	uint8_t		*map;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*c;
+	char	*f;
 	uint16_t	width;
 	uint16_t	height;
 	uint16_t	allocated;
+	size_t	size[2];
 }	t_map;
 
 typedef struct s_mouse

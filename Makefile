@@ -9,13 +9,13 @@ LIBFT_DIR := ./libft/
 
 
 INIT_ODIR		:= $(ODIR)init/
-PARSER_ODIR			:= $(ODIR)parser/
+PARSER_ODIR			:= $(ODIR)parsing/
 MINIMAP_ODIR		:= $(ODIR)minimap/
 RAYCAST_ODIR		:= $(ODIR)raycast/
 HOOK_ODIR			:= $(ODIR)hook/
 
 CC		:= cc
-DEBUG	:= #-g3 -fsanitize=address,leak
+DEBUG	:= -g3  #-fsanitize=address,leak
 CFLAGS	:= $(DEBUG) -Wall -Werror -Wextra
 LFLAGS	:= -L$(MLXDIR) -L$(LIBFT_DIR) -lmlx_Linux -lm -lft -lX11 -lXext
 IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I$(LIBFT_DIR)
@@ -24,7 +24,7 @@ IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I$(LIBFT_DIR)
 
 init		:= init_data init_image init_hook
 
-parser		:= parser
+parser		:= parsing check_file check_line get_tex get_map get_color
 
 minimap		:= draw_minimap
 
@@ -34,7 +34,7 @@ hook		:= key_hook mouse_hook no_event pause
 
 main		:= main quit math_utils
 
-includes	:= define.h hook.h init.h math_utils.h minimap.h parser.h quit.h raycast.h struct.h
+includes	:= define.h hook.h init.h math_utils.h minimap.h  quit.h raycast.h struct.h parsing.h
 
 
 INIT_O			= $(addprefix $(INIT_ODIR), $(addsuffix .o, $(init)))
