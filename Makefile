@@ -1,18 +1,22 @@
 NAME = cub3d
+NAME_BONUS = cub3d_bonus
 
 IDIR	:= ./includes/
 SDIR	:= ./src/
 ODIR	:= ./obj/
 
+SDIR_BONUS	:= ./src_bonus/
+ODIR_BONUS	:= ./obj_bonus/
+
 MLXDIR	:= ./mlx/
 LIBFT_DIR := ./libft/
 
 
-INIT_ODIR		:= $(ODIR)init/
-PARSER_ODIR			:= $(ODIR)parsing/
-MINIMAP_ODIR		:= $(ODIR)minimap/
-RAYCAST_ODIR		:= $(ODIR)raycast/
-HOOK_ODIR			:= $(ODIR)hook/
+INIT_ODIR		:= init/
+PARSER_ODIR			:= parsing/
+MINIMAP_ODIR		:= minimap/
+RAYCAST_ODIR		:= raycast/
+HOOK_ODIR			:= hook/
 
 CC		:= cc
 DEBUG	:= -g3 # -fsanitize=address,leak
@@ -43,18 +47,23 @@ MINIMAP_O		= $(addprefix $(MINIMAP_ODIR), $(addsuffix .o, $(minimap)))
 RAYCAST_O		= $(addprefix $(RAYCAST_ODIR), $(addsuffix .o, $(raycast)))
 HOOK_O		= $(addprefix $(HOOK_ODIR), $(addsuffix .o, $(hook)))
 
-MAIN_O			= $(addprefix $(ODIR), $(addsuffix .o, $(main)))
+MAIN_O			= $(addsuffix .o, $(main))
 
 LIBFT_A	= $(LIBFT_DIR)libft.a
 LIBFT_H = $(LIBFT_DIR)libft.h
 
 INCL	= $(addprefix $(IDIR), $(includes))
 
-OBJ		= $(INIT_O) $(PARSER_O) $(MAIN_O)  $(MINIMAP_O) $(RAYCAST_O) $(HOOK_O)
+obj		= $(INIT_O) $(PARSER_O) $(MAIN_O)  $(MINIMAP_O) $(RAYCAST_O) $(HOOK_O)
 
-.PHONY: all re clean fclan MLX DIR
+OBJ		= $(addprefix $(ODIR), $(obj))
+
+OBJ_BONUS	= $(addprefix $(ODIR_BONUS), $(obj))
+
+.PHONY: all re clean fclan MLX DIR bonus
 
 all: LIBFT DIR MLX $(NAME)
+
 
 $(NAME):  $(LIBFT_A) $(LIBFT_H) $(OBJ)
 	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJ) $(LFLAGS)
@@ -64,11 +73,27 @@ $(ODIR)%.o: $(SDIR)%.c Makefile $(INCL)
 
 DIR:
 	mkdir -p $(ODIR)
-	mkdir -p $(INIT_ODIR)
-	mkdir -p $(PARSER_ODIR)
-	mkdir -p $(MINIMAP_ODIR)
-	mkdir -p $(RAYCAST_ODIR)
-	mkdir -p $(HOOK_ODIR)
+	mkdir -p $(ODIR)$(INIT_ODIR)
+	mkdir -p $(ODIR)$(PARSER_ODIR)
+	mkdir -p $(ODIR)$(MINIMAP_ODIR)
+	mkdir -p $(ODIR)$(RAYCAST_ODIR)
+	mkdir -p $(ODIR)$(HOOK_ODIR)
+
+bonus: LIBFT DIR_BONUS MLX $(NAME_BONUS)
+
+$(NAME_BONUS): $(LIBFT_A) $(LIBFT_H) $(OBJ_BONUS)
+	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJ_BONUS) $(LFLAGS)
+
+$(ODIR_BONUS)%.o: $(SDIR_BONUS)%.c Makefile $(INCL)
+	$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
+
+DIR_BONUS:
+	mkdir -p $(ODIR_BONUS)
+	mkdir -p $(ODIR_BONUS)$(INIT_ODIR)
+	mkdir -p $(ODIR_BONUS)$(PARSER_ODIR)
+	mkdir -p $(ODIR_BONUS)$(MINIMAP_ODIR)
+	mkdir -p $(ODIR_BONUS)$(RAYCAST_ODIR)
+	mkdir -p $(ODIR_BONUS)$(HOOK_ODIR)
 
 MLX:
 	cd $(MLXDIR) && ./configure
@@ -78,10 +103,12 @@ LIBFT:
 
 clean:
 	rm -rf $(ODIR)
+	rm -rf $(ODIR_BONUS)
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(NAME_BONUS)
 	@make -C $(LIBFT_DIR) fclean
 
 re:	fclean all

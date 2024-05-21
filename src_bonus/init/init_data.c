@@ -67,6 +67,5 @@ t_bool	init_data(t_data *data)
 		quit(data, 1);
 	init_cam(&data->map, &data->cam);
 	init_render_vars(data);
-	data->render_vars.y_off = 1;
 	return (TRUE);
 }

@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	srand(time(NULL));
 	ft_memset(&data, 0, sizeof(t_data));
 	if (ac != 2)
 		return (1);
@@ -48,8 +47,6 @@ int	main(int ac, char **av)
 		else
 		{
 			data.map.map[i] -= '0' - 1;
-			if (data.map.map[i] == 1 && rand() % 20 == 11)
-				data.map.map[i] = 3;
 		}
 	}
 	printf("\n");
