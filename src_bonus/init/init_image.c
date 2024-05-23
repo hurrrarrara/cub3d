@@ -1,6 +1,18 @@
+#include "define.h"
+#include "libft.h"
+#include "src/basics/basics.h"
 #include "struct.h"
 #include "mlx.h"
+#include <stdio.h>
 #include <strings.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+static void	print_error(const char *msg)
+{
+	ft_putstr_fd("Error\n", 2);
+	perror(msg);
+}
 
 t_bool	init_image(\
 	const t_data *data, \
@@ -10,31 +22,34 @@ t_bool	init_image(\
 {
 	img->img = mlx_new_image(data->mlx, width, height);
 	if (!img->img)
-		return (FALSE);
+		return (print_error("mlx"), FALSE);
 	img->addr = mlx_get_data_addr(\
 		img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	if (!img->addr)
-		return (FALSE);
+		return (print_error("mlx"), FALSE);
 	img->width = width;
 	img->height = height;
 	return (TRUE);
 }
 
-t_img	xpm_to_image(t_data *data, const char *texture_path)
+t_bool	xpm_to_image(t_data *data, t_img *texture, const char *texture_path)
 {
-	t_img	texture;
+	const int	fd = open(texture_path, O_RDONLY);
 
-	ft_bzero(&texture, sizeof(texture));
-	texture.img = mlx_xpm_file_to_image(\
-		data->mlx, (char *)texture_path, &texture.width, &texture.height);
-	if (!texture.img)
-		return (texture);
-	texture.addr = mlx_get_data_addr(\
-		texture.img, \
-		&texture.bits_per_pixel, \
-		&texture.line_length, \
-		&texture.endian);
-	if (!texture.addr)
-		return (texture);
-	return (texture);
+	if (fd < 0)
+		return (print_error(texture_path), FALSE);
+	close(fd);
+	ft_bzero(texture, sizeof(t_img));
+	texture->img = mlx_xpm_file_to_image(\
+		data->mlx, (char *)texture_path, &texture->width, &texture->height);
+	if (!texture->img)
+		return (print_error("mlx"), FALSE);
+	texture->addr = mlx_get_data_addr(\
+		texture->img, \
+		&texture->bits_per_pixel, \
+		&texture->line_length, \
+		&texture->endian);
+	if (!texture->addr)
+		return (print_error("mlx"), FALSE);
+	return (TRUE);
 }

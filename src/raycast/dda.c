@@ -53,7 +53,6 @@ static __inline__ \
 	draw_vars.x = x * draw_vars.textures.width;
 	if ((wall.x) * (dda_vars.step.x == -1) + (!wall.x) * (dda_vars.step.y == 1))
 		draw_vars.x = draw_vars.textures.width - draw_vars.x - 1;
-	draw_vars.x += (text_nb == 4) * render_vars.anim_offset;
 	return (draw_vars);
 }
 
