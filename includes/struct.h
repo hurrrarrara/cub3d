@@ -97,6 +97,10 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
+	t_bool			fw;
+	t_bool			bw;
+	t_bool			l;
+	t_bool			r;
 	t_map			map;
 	t_img			minimap;
 	t_camera		cam;

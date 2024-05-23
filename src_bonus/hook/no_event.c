@@ -61,8 +61,21 @@ void	draw_door_notif(t_data *data)
 	}
 }
 
+void	move(t_data *data)
+{
+	if (data->fw)
+		data->cam.move.x += MOVE_SPEED;
+	if (data->bw)
+		data->cam.move.x -= MOVE_SPEED;
+	if (data->l)
+		data->cam.move.y -= MOVE_SPEED;
+	if (data->r)
+		data->cam.move.y += MOVE_SPEED;
+}
+
 int	no_event(t_data *data)
 {
+	move(data);
 	if (data->pause_toggle >= 1)
 		return (active_pause(data), 0);
 	mlx_mouse_hide(data->mlx, data->win);

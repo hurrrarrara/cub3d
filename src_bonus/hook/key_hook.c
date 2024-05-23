@@ -26,16 +26,30 @@ void	toogle_door(t_data *data)
 		data->map.map[x + (y - 1) * data->map.width] = 3;
 }
 
+
+int	key_release_hook(int key, t_data *data)
+{
+	if (key == KEY_FRWD)
+		data->fw = FALSE;
+	if (key == KEY_BCKWRD)
+		data->bw = FALSE;
+	if (key == KEY_LEFT)
+		data->l = FALSE;
+	if (key == KEY_RIGHT)
+		data->r = FALSE;
+	return (0);
+}
+
 int	key_press_hook(int key, t_data *data)
 {
 	if (key == KEY_FRWD)
-		data->cam.move.x += MOVE_SPEED;
+		data->fw = TRUE;
 	if (key == KEY_BCKWRD)
-		data->cam.move.x -= MOVE_SPEED;
+		data->bw = TRUE;
 	if (key == KEY_LEFT)
-		data->cam.move.y -= MOVE_SPEED;
+		data->l = TRUE;
 	if (key == KEY_RIGHT)
-		data->cam.move.y += MOVE_SPEED;
+		data->r = TRUE;
 	if (key == 'f')
 		toogle_door(data);
 	if (key == 65289)

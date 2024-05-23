@@ -84,6 +84,10 @@ t_bool	init_data(t_data *data)
 	const uint16_t	width_square = ft_i16min(MINIMAP_HEIGHT / data->map.height, \
 		MINIMAP_WIDTH / data->map.width);
 
+	data->fw = FALSE;
+	data->bw = FALSE;
+	data->l = FALSE;
+	data->r = FALSE;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		quit(data, 1);
