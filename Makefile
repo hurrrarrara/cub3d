@@ -38,14 +38,14 @@ hook		:= key_hook mouse_hook no_event pause
 
 main		:= main quit math_utils
 
-includes	:= define.h hook.h init.h math_utils.h minimap.h  quit.h raycast.h struct.h parsing.h
+includes	:= define.h hook.h init.h math_utils.h minimap.h quit.h raycast.h struct.h parsing.h
 
 
 INIT_O			= $(addprefix $(INIT_ODIR), $(addsuffix .o, $(init)))
 PARSER_O		= $(addprefix $(PARSER_ODIR), $(addsuffix .o, $(parser)))
 MINIMAP_O		= $(addprefix $(MINIMAP_ODIR), $(addsuffix .o, $(minimap)))
 RAYCAST_O		= $(addprefix $(RAYCAST_ODIR), $(addsuffix .o, $(raycast)))
-HOOK_O		= $(addprefix $(HOOK_ODIR), $(addsuffix .o, $(hook)))
+HOOK_O			= $(addprefix $(HOOK_ODIR), $(addsuffix .o, $(hook)))
 
 MAIN_O			= $(addsuffix .o, $(main))
 
