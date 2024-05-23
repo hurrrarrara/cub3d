@@ -15,14 +15,12 @@
 char	ft_atouc(char *str)
 {
 	size_t			i;
-	size_t			start;
 	unsigned char	res;
 
 	i = 0;
 	res = 0;
 	while (str[i] && str[i] == ' ')
 		i++;
-	start = i;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		res *= 10;

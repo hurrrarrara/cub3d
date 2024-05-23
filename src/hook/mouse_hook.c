@@ -1,6 +1,7 @@
 #include "struct.h"
 #include "define.h"
 #include <stdio.h>
+
 int	mouse_move_hook(int x, int y, t_data *data)
 {
 	(void)y;

@@ -64,16 +64,16 @@ typedef struct s_camera
 typedef struct s_map
 {
 	uint8_t		*map;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*c;
-	char	*f;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*c;
+	char		*f;
 	uint16_t	width;
 	uint16_t	height;
 	uint16_t	allocated;
-	size_t	size[2];
+	size_t		size[2];
 }	t_map;
 
 typedef struct s_mouse

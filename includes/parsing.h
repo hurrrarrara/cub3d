@@ -16,8 +16,8 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
-#include "struct.h"
-#include "unistd.h"
+# include "struct.h"
+# include "unistd.h"
 
 int		line_empty(char *line);
 int		line_ismap(char *line);
@@ -31,6 +31,6 @@ int		get_tex(int fd, t_map *map);
 void	*get_color(char *line);
 void	free_map(t_map *map);
 
-int	parsing(t_map *map, char **argv);
+int		parsing(t_map *map, char **argv);
 
 #endif

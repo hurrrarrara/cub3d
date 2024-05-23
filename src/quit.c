@@ -27,8 +27,6 @@ void	clean_img(t_data *data)
 
 void	free_data(t_data *data)
 {
-	// if (data->map.map)
-	// 	free(data->map.map);
 	if (data->mlx)
 		clean_img(data);
 	if (data->win)
@@ -43,10 +41,6 @@ void	free_data(t_data *data)
 
 void	quit(t_data *data, const uint8_t code)
 {
-	if (code)
-	{
-		perror("cub3d");
-	}
 	free_data(data);
 	exit(code);
 }

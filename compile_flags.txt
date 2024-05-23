@@ -1,3 +1,6 @@
 -I./mlx
 -I./includes
 -I./libft
+-Wall
+-Werror
+-Wextra

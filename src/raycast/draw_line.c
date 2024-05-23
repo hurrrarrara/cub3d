@@ -16,7 +16,7 @@ static __inline__ uint32_t	color_x_angle(t_color color, float angle)
 }
 
 static __inline__ \
-	t_drawlinevars	set_drawline_vars(const t_drawvars draw_vars, float y_off)
+	t_drawlinevars	set_vars(const t_drawvars draw_vars, float y_off)
 {
 	t_drawlinevars	final;
 
@@ -31,7 +31,7 @@ static __inline__ \
 
 void	draw_line(uint16_t col, t_rendervars render_vars, t_drawvars draw_vars)
 {
-	const t_drawlinevars	vars = set_drawline_vars(draw_vars, render_vars.y_off);
+	const t_drawlinevars	vars = set_vars(draw_vars, render_vars.y_off);
 	const uint16_t			y = draw_vars.textures.height - 1;
 	uint32_t				color;
 	uint16_t				i;
