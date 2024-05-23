@@ -88,7 +88,7 @@ typedef struct s_rendervars
 	t_color		floor;
 	t_color		ceiling;
 	t_img		textures[5];
-	uint16_t	anim_offset;
+	uint32_t	anim_offset;
 	uint16_t	width;
 	float		y_off;
 }	t_rendervars;

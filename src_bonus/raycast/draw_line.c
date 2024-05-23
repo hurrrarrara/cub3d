@@ -43,10 +43,6 @@ void	draw_line(uint16_t col, t_rendervars render_vars, t_drawvars draw_vars)
 	{
 		if (i >= vars.start && i < vars.end)
 		{
-			// color = ((uint32_t *)draw_vars.textures.addr) \
-			// 	[draw_vars.x + \
-			// 	(draw_vars.textures.width * \
-			// 	(y - ((int)((i - vars.start) * vars.step))))];
 			color = text[(int)((i - vars.start) * vars.step)];
 			color = color_x_angle((t_color){color}, draw_vars.angle);
 		}
