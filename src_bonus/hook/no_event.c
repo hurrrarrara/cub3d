@@ -85,8 +85,8 @@ int	no_event(t_data *data)
 	move_cam(&data->cam, &data->map);
 	memset(data->minimap.addr, 0, \
 		data->minimap.line_length * data->minimap.height);
-	data->render_vars.anim_offset = (data->render_vars.anim_offset + \
-		ANIM_OFFSET) % data->render_vars.textures[4].width;
+	data->render_vars.anim_offset = ((data->render_vars.anim_offset + \
+		(ANIM_OFFSET )) % ((data->render_vars.textures[4].width * data->render_vars.textures[4].height)));
 	raycaster(data->cam, data->map, data->render_vars);
 	draw_minimap(data);
 	draw_door_notif(data);

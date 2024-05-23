@@ -32,19 +32,22 @@ static __inline__ \
 void	draw_line(uint16_t col, t_rendervars render_vars, t_drawvars draw_vars)
 {
 	const t_drawlinevars	vars = set_vars(draw_vars, render_vars.y_off);
-	const uint16_t			y = draw_vars.textures.height - 1;
+	// const uint16_t			y = draw_vars.textures.height - 1;
 	uint32_t				color;
 	uint16_t				i;
+	const uint32_t			*text = ((uint32_t *)draw_vars.textures.addr) + draw_vars.x * draw_vars.textures.height;
 
 	i = 0;
+
 	while (i < WIN_HEIGHT)
 	{
 		if (i >= vars.start && i < vars.end)
 		{
-			color = ((uint32_t *)draw_vars.textures.addr) \
-				[draw_vars.x + \
-				(draw_vars.textures.width * \
-				(y - ((int)((i - vars.start) * vars.step))))];
+			// color = ((uint32_t *)draw_vars.textures.addr) \
+			// 	[draw_vars.x + \
+			// 	(draw_vars.textures.width * \
+			// 	(y - ((int)((i - vars.start) * vars.step))))];
+			color = text[(int)((i - vars.start) * vars.step)];
 			color = color_x_angle((t_color){color}, draw_vars.angle);
 		}
 		render_vars.render_map \

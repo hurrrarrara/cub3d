@@ -28,5 +28,5 @@ void	active_pause(t_data *data)
 	mlx_mouse_show(data->mlx, data->win);
 	draw_pause(data);
 	data->pause_toggle++;
-	mlx_put_image_to_window(data->mlx, data->win, data->final_render.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->render_vars.textures[4].img, 0, 0);
 }

@@ -47,15 +47,15 @@ void	clean_map(t_data *data)
 
 void	fetch_texture(t_data *data)
 {
-	if (!xpm_to_image(data, data->render_vars.textures, data->map.no))
+	if (!xpm_to_image(data, data->render_vars.textures, data->map.no) || !reverse_img(data->render_vars.textures))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 1, data->map.so))
+	if (!xpm_to_image(data, data->render_vars.textures + 1, data->map.so) || !reverse_img(data->render_vars.textures + 1))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 2, data->map.ea))
+	if (!xpm_to_image(data, data->render_vars.textures + 2, data->map.ea) || !reverse_img(data->render_vars.textures + 2))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 3, data->map.we))
+	if (!xpm_to_image(data, data->render_vars.textures + 3, data->map.we) || !reverse_img(data->render_vars.textures + 3))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 4, DOOR_TEXT))
+	if (!xpm_to_image(data, data->render_vars.textures + 4, DOOR_TEXT) || !reverse_img(data->render_vars.textures + 4))
 		quit(data, 1);
 	if (!xpm_to_image(data, &data->door_notif, DOOR_NOTIF))
 		quit(data, 1);

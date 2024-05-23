@@ -22,11 +22,11 @@
 # define FLOOR_COLOR 0xafafaf
 
 # define CUB_HEIGHT 4096
-# define ANIM_OFFSET 48
+# define ANIM_OFFSET 549 * 674
 
 # define DOOR_NOTIF "./textures/door.xpm"
 # define PAUSE_SCREEN "./textures/pause.xpm"
-# define DOOR_TEXT "./textures/SFDoor.xpm"
+# define DOOR_TEXT "./textures/animated.xpm"
 
 # define ERROR_MLX_MSG "MLX"
 

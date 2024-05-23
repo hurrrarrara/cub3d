@@ -52,12 +52,15 @@ static __inline__ \
 		(!wall.x) * (float)(ray.origin.x + draw_vars.dist * ray.ray.x);
 	x -= floorf(x);
 	if (text_nb == 4)
-		draw_vars.x = x * ANIM_OFFSET;
+		draw_vars.x = x * 549;
 	else
 		draw_vars.x = x * draw_vars.textures.width;
 	if ((wall.x) * (dda_vars.step.x == -1) + (!wall.x) * (dda_vars.step.y == 1))
-		draw_vars.x = draw_vars.textures.width - draw_vars.x - 1;
-	draw_vars.x += (text_nb == 4) * render_vars.anim_offset;
+		draw_vars.x = (text_nb != 4) * (draw_vars.textures.width - draw_vars.x - 1) + (text_nb == 4) * (674 - draw_vars.x - 1);
+	if (text_nb == 4)
+		draw_vars.x = (draw_vars.x * draw_vars.textures.height) + (render_vars.anim_offset * 1);
+	else
+		draw_vars.x *= draw_vars.textures.height;
 	return (draw_vars);
 }
 

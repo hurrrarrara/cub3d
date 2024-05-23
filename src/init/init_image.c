@@ -3,6 +3,7 @@
 #include "src/basics/basics.h"
 #include "struct.h"
 #include "mlx.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <strings.h>
 #include <fcntl.h>
@@ -29,6 +30,28 @@ t_bool	init_image(\
 		return (print_error("mlx"), FALSE);
 	img->width = width;
 	img->height = height;
+	return (TRUE);
+}
+
+t_bool	reverse_img(t_img *img)
+{
+	size_t		i;
+	uint32_t	*tempo;
+
+	i = 0;
+	tempo = ft_calloc(img->width * img->height, sizeof(uint32_t));
+	if (!tempo)
+		return (FALSE);
+	while (i < (size_t)(img->width * img->height))
+	{
+		tempo[i] = ((uint32_t *)img->addr)[(i / img->width) + ((img->height - 1 - (i % img->height))) * img->width];
+		i++;
+	}
+	while (i-- > 0)
+	{
+		((uint32_t *)img->addr)[i] = tempo[i];
+	}
+	free(tempo);
 	return (TRUE);
 }
 

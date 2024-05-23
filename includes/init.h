@@ -13,4 +13,6 @@ t_bool	init_image(\
 	const uint32_t width, \
 	const uint32_t height);
 
+t_bool	reverse_img(t_img *img);
+
 #endif

@@ -32,6 +32,52 @@ t_bool	init_image(\
 	return (TRUE);
 }
 
+t_bool	reverse_img(t_img *img)
+{
+	size_t		i;
+	uint32_t	*tempo;
+
+	i = 0;
+	tempo = ft_calloc(img->width * img->height, sizeof(uint32_t));
+	if (!tempo)
+		return (FALSE);
+	while (i < (size_t)(img->width * img->height))
+	{
+		// tempo[i] = ((uint32_t *)img->addr)[(i / img->width) + ((img->height - 1 - (i % img->height))) * img->width];
+		tempo[((i / img->width) ) + (i % img->width) * img->height] = ((uint32_t *)img->addr)[i];
+		i++;
+	}
+	while (i-- > 0)
+	{
+		((uint32_t *)img->addr)[i] = tempo[i];
+	}
+	free(tempo);
+	return (TRUE);
+}
+
+t_bool	reverse_anim(t_img *img)
+{
+	size_t		i;
+	uint32_t	*tempo;
+
+	i = 0;
+	tempo = ft_calloc(img->width * img->height, sizeof(uint32_t));
+	if (!tempo)
+		return (FALSE);
+	while (i < (size_t)(img->width * img->height))
+	{
+		tempo[i] = ((uint32_t *)img->addr)[(i / img->width) + ((img->height - 1 - (i % img->height))) * img->width];
+		i++;
+	}
+	while (i-- > 0)
+	{
+		((uint32_t *)img->addr)[i] = tempo[i];
+	}
+	free(tempo);
+	return (TRUE);
+}
+
+
 t_bool	xpm_to_image(t_data *data, t_img *texture, const char *texture_path)
 {
 	const int	fd = open(texture_path, O_RDONLY);
