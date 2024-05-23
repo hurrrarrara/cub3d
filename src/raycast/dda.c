@@ -28,7 +28,6 @@ static __inline__ t_ddavrs	set_dda_vars(t_ray ray)
 	return (final);
 }
 
-
 static __inline__ \
 	t_drawvars	set_draw_vars(\
 		t_ray ray, \
