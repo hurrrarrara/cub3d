@@ -28,6 +28,7 @@ static __inline__ t_ddavrs	set_dda_vars(t_ray ray)
 	return (final);
 }
 
+
 static __inline__ \
 	t_drawvars	set_draw_vars(\
 		t_ray ray, \
@@ -50,9 +51,9 @@ static __inline__ \
 	x = (wall.x) * (float)(ray.origin.y + draw_vars.dist * ray.ray.y) + \
 		(!wall.x) * (float)(ray.origin.x + draw_vars.dist * ray.ray.x);
 	x -= floorf(x);
-	draw_vars.x = x * render_vars.width;
+	draw_vars.x = x * draw_vars.textures.width;
 	if ((wall.x) * (dda_vars.step.x == -1) + (!wall.x) * (dda_vars.step.y == 1))
-		draw_vars.x = render_vars.width - draw_vars.x - 1;
+		draw_vars.x = draw_vars.textures.width - draw_vars.x - 1;
 	draw_vars.x += (text_nb == 4) * render_vars.anim_offset;
 	return (draw_vars);
 }
