@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pause.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:59:02 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 17:13:36 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 #include "mlx.h"
 
@@ -28,5 +40,5 @@ void	active_pause(t_data *data)
 	mlx_mouse_show(data->mlx, data->win);
 	draw_pause(data);
 	data->pause_toggle++;
-	mlx_put_image_to_window(data->mlx, data->win, data->render_vars.textures[4].img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->final_render.img, 0, 0);
 }

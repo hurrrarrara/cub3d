@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_image.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:52 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 16:58:53 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "define.h"
 #include "libft.h"
 #include "src/basics/basics.h"
@@ -43,8 +55,8 @@ t_bool	reverse_img(t_img *img)
 		return (FALSE);
 	while (i < (size_t)(img->width * img->height))
 	{
-		// tempo[i] = ((uint32_t *)img->addr)[(i / img->width) + ((img->height - 1 - (i % img->height))) * img->width];
-		tempo[(img->height - 1 - (i / img->width) ) + (i % img->width) * img->height] = ((uint32_t *)img->addr)[i];
+		tempo[(img->height - 1 - (i / img->width)) + \
+			(i % img->width) * img->height] = ((uint32_t *)img->addr)[i];
 		i++;
 	}
 	while (i-- > 0)

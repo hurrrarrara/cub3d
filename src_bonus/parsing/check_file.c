@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/22 12:40:24 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/24 17:43:33 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	check_err_extension(char *file)
 	size_t	len;
 
 	len = ft_strlen(file);
-	if (len > 4 && ft_strncmp(&file[len - 5], ".cub", 5))
+	if (len > 4 && ft_strncmp(&file[len - 4], ".cub", 5))
 		return (1);
-	return (0);
+	return (len <= 4);
 }
 
 int	check_err_sides(t_map *map, size_t i, size_t row, size_t col)
 {
 	char	c;
 
+	if (row == 0 || i == 0 || row == map->size[1] - 1 || i == map->size[0] - 1)
+		return (1);
 	c = map->map[i + ((row - 1) * col)];
 	if (c != '0' && c != '1' && c != '2' && c != 'N' && c != 'E' && c != 'W' \
 		&& c != 'S')
@@ -60,15 +62,15 @@ int	check_err_map(t_map *map)
 		while (++col < map->size[0])
 		{
 			c = map->map[col + (row * map->size[0])];
-			if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '2')
+			if (c == '0' || c == 'N' || c == 'S' \
+				|| c == 'E' || c == 'W' || c == '2')
 			{
 				if (check_err_sides(map, col, row, map->size[0]))
 					return (1);
 			}
 			else if (c != ' ' && c != '1')
 				return (1);
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				player++;
+			player += (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 		}
 	}
 	return (player != 1);

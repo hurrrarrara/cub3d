@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:58 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 16:58:59 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "src/basics/basics.h"
 #include "struct.h"
@@ -44,17 +56,23 @@ void	clean_map(t_data *data)
 		i++;
 	}
 }
+
 void	fetch_texture(t_data *data)
 {
-	if (!xpm_to_image(data, data->render_vars.textures, data->map.no) || !reverse_img(data->render_vars.textures))
+	if (!xpm_to_image(data, data->render_vars.textures, data->map.no) \
+		|| !reverse_img(data->render_vars.textures))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 1, data->map.so) || !reverse_img(data->render_vars.textures + 1))
+	if (!xpm_to_image(data, data->render_vars.textures + 1, data->map.so) \
+		|| !reverse_img(data->render_vars.textures + 1))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 2, data->map.ea) || !reverse_img(data->render_vars.textures + 2))
+	if (!xpm_to_image(data, data->render_vars.textures + 2, data->map.ea) \
+		|| !reverse_img(data->render_vars.textures + 2))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 3, data->map.we) || !reverse_img(data->render_vars.textures + 3))
+	if (!xpm_to_image(data, data->render_vars.textures + 3, data->map.we) \
+		|| !reverse_img(data->render_vars.textures + 3))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 4, DOOR_TEXT) || !reverse_img(data->render_vars.textures + 4))
+	if (!xpm_to_image(data, data->render_vars.textures + 4, DOOR_TEXT) \
+		|| !reverse_img(data->render_vars.textures + 4))
 		quit(data, 1);
 	if (!xpm_to_image(data, &data->door_notif, DOOR_NOTIF))
 		quit(data, 1);

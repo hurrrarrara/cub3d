@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   no_event.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:56:08 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 16:59:07 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minimap.h"
 #include "mlx.h"
 #include "raycast.h"
@@ -85,8 +97,10 @@ int	no_event(t_data *data)
 	move_cam(&data->cam, &data->map);
 	memset(data->minimap.addr, 0, \
 		data->minimap.line_length * data->minimap.height);
-	data->render_vars.anim_offset = ((data->render_vars.anim_offset + \
-		(ANIM_OFFSET )) % ((data->render_vars.textures[4].width * data->render_vars.textures[4].height)));
+	data->render_vars.anim_offset = (data->render_vars.anim_offset + \
+		(ANIM_OFFSET * data->render_vars.textures[4].height)) % \
+		(data->render_vars.textures[4].width * \
+		data->render_vars.textures[4].height);
 	raycaster(data->cam, data->map, data->render_vars);
 	draw_minimap(data);
 	draw_door_notif(data);

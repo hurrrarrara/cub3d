@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:59:29 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 17:46:17 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx.h"
 #include "parsing.h"
 #include "struct.h"
@@ -23,6 +35,8 @@ void	clean_img(t_data *data)
 		mlx_destroy_image(data->mlx, data->render_vars.textures[3].img);
 	if (data->render_vars.textures[4].img)
 		mlx_destroy_image(data->mlx, data->render_vars.textures[4].img);
+	if (data->minimap.img)
+		mlx_destroy_image(data->mlx, data->minimap.img);
 }
 
 void	free_data(t_data *data)

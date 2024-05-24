@@ -5,6 +5,7 @@ IDIR	:= ./includes/
 SDIR	:= ./src/
 ODIR	:= ./obj/
 
+IDIR_BONUS	:= ./includes_bonus/
 SDIR_BONUS	:= ./src_bonus/
 ODIR_BONUS	:= ./obj_bonus/
 
@@ -19,10 +20,12 @@ RAYCAST_ODIR		:= raycast/
 HOOK_ODIR			:= hook/
 
 CC		:= cc
-DEBUG	:= -g3  #-fsanitize=address,leak
+DEBUG	:= #-g3 -fsanitize=address,leak
 CFLAGS	:= $(DEBUG) -Wall -Werror -Wextra
 LFLAGS	:= -L$(MLXDIR) -L$(LIBFT_DIR) -lmlx_Linux -lm -lft -lX11 -lXext
 IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I$(LIBFT_DIR)
+
+IFLAGS_BONUS := -I$(IDIR_BONUS) -I$(MLXDIR) -I$(LIBFT_DIR)
 
 
 
@@ -40,6 +43,7 @@ main		:= main quit math_utils
 
 includes	:= define.h hook.h init.h math_utils.h minimap.h quit.h raycast.h struct.h parsing.h
 
+includes_bonus := define.h hook.h init.h math_utils.h minimap.h quit.h raycast.h struct.h parsing.h
 
 INIT_O			= $(addprefix $(INIT_ODIR), $(addsuffix .o, $(init)))
 PARSER_O		= $(addprefix $(PARSER_ODIR), $(addsuffix .o, $(parser)))
@@ -52,7 +56,8 @@ MAIN_O			= $(addsuffix .o, $(main))
 LIBFT_A	= $(LIBFT_DIR)libft.a
 LIBFT_H = $(LIBFT_DIR)libft.h
 
-INCL	= $(addprefix $(IDIR), $(includes))
+INCL		= $(addprefix $(IDIR), $(includes))
+INCL_BONUS	= $(addprefix $(IDIR_BONUS), $(includes))
 
 obj		= $(INIT_O) $(PARSER_O) $(MAIN_O)  $(MINIMAP_O) $(RAYCAST_O) $(HOOK_O)
 
@@ -82,10 +87,10 @@ DIR:
 bonus: LIBFT DIR_BONUS MLX $(NAME_BONUS)
 
 $(NAME_BONUS): $(LIBFT_A) $(LIBFT_H) $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJ_BONUS) $(LFLAGS)
+	$(CC) $(CFLAGS) $(IFLAGS_BONUS) -o $@ $(OBJ_BONUS) $(LFLAGS)
 
-$(ODIR_BONUS)%.o: $(SDIR_BONUS)%.c Makefile $(INCL)
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
+$(ODIR_BONUS)%.o: $(SDIR_BONUS)%.c Makefile $(INCL_BONUS)
+	$(CC) $(CFLAGS) $(IFLAGS_BONUS) -o $@ -c $<
 
 DIR_BONUS:
 	mkdir -p $(ODIR_BONUS)

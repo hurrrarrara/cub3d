@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:37 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 18:02:33 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include <stdint.h>
 #include "struct.h"
 #include <define.h>
-#include "raycast.h"
+#include "../includes_bonus/raycast.h"
 #include "math_utils.h"
 
 static __inline__ uint32_t	color_x_angle(t_color color, float angle)
@@ -32,13 +44,12 @@ static __inline__ \
 void	draw_line(uint16_t col, t_rendervars render_vars, t_drawvars draw_vars)
 {
 	const t_drawlinevars	vars = set_vars(draw_vars, render_vars.y_off);
-	// const uint16_t			y = draw_vars.textures.height - 1;
+	const uint32_t			*text = \
+		((uint32_t *)draw_vars.textures.addr) + draw_vars.x;
 	uint32_t				color;
 	uint16_t				i;
-	const uint32_t			*text = ((uint32_t *)draw_vars.textures.addr) + draw_vars.x;// * draw_vars.textures.height;
 
 	i = 0;
-
 	while (i < WIN_HEIGHT)
 	{
 		if (i >= vars.start && i < vars.end)

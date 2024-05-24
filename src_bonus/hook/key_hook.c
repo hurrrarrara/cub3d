@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:59:13 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 16:59:14 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 #include "define.h"
 #include <stdint.h>
@@ -25,7 +37,6 @@ void	toogle_door(t_data *data)
 	else if (data->map.map[x + (y - 1) * data->map.width] == 4)
 		data->map.map[x + (y - 1) * data->map.width] = 3;
 }
-
 
 int	key_release_hook(int key, t_data *data)
 {

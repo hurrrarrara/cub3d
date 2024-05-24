@@ -6,7 +6,7 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:30:07 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 15:58:52 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/24 17:20:14 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	get_tex(int fd, t_map *map)
 		while (line[i] == ' ')
 			i++;
 		if (!get_info(line, map, i))
-			return (0);
+			return (free(line), 0);
 		free(line);
 		line = get_next_line(fd);
 	}

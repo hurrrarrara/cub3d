@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:51:18 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 18:04:33 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "define.h"
-#include "raycast.h"
+#include "../includes_bonus/raycast.h"
 #include <math.h>
 #include <stdint.h>
 #include "struct.h"
@@ -44,23 +56,20 @@ static __inline__ \
 		((dda_vars.step.y == -1) * 1) + (wall.y == 3) * 4;
 
 	draw_vars.angle = fminf(1, \
-		1.1 - fabs(((wall.x) * ray.ray.y + (!wall.x) * ray.ray.x) * \
+		1.5 - fabs(((wall.x) * ray.ray.y + (!wall.x) * ray.ray.x) * \
 		(1 / sqrtf((ray.ray.x * ray.ray.x) + (ray.ray.y * ray.ray.y)))));
 	draw_vars.textures = render_vars.textures[text_nb];
 	draw_vars.dist = (wall.x) * dda_vars.dist.x + (!wall.x) * dda_vars.dist.y;
 	x = (wall.x) * (float)(ray.origin.y + draw_vars.dist * ray.ray.y) + \
 		(!wall.x) * (float)(ray.origin.x + draw_vars.dist * ray.ray.x);
 	x -= floorf(x);
-	if (text_nb == 4)
-		draw_vars.x = x * 549;
-	else
-		draw_vars.x = x * draw_vars.textures.width;
+	draw_vars.x = x * ((text_nb == 4) * ANIM_OFFSET + \
+		(text_nb != 4) * draw_vars.textures.width);
 	if ((wall.x) * (dda_vars.step.x == -1) + (!wall.x) * (dda_vars.step.y == 1))
-		draw_vars.x = (text_nb != 4) * (draw_vars.textures.width - draw_vars.x - 1) + (text_nb == 4) * (674 - draw_vars.x - 1);
-	if (text_nb == 4)
-		draw_vars.x = (draw_vars.x * draw_vars.textures.height) + (render_vars.anim_offset * 1);
-	else
-		draw_vars.x *= draw_vars.textures.height;
+		draw_vars.x = (text_nb != 4) * (draw_vars.textures.width - \
+		draw_vars.x - 1) + (text_nb == 4) * (ANIM_OFFSET - draw_vars.x - 1);
+	draw_vars.x = (draw_vars.x * draw_vars.textures.height) + \
+		(text_nb == 4) * render_vars.anim_offset;
 	return (draw_vars);
 }
 
