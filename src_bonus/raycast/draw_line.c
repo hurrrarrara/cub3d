@@ -6,16 +6,16 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:58:37 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 18:02:33 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:37:24 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdint.h>
-#include "struct.h"
-#include <define.h>
-#include "../includes_bonus/raycast.h"
-#include "math_utils.h"
+#include "define_bonus.h"
+#include "struct_bonus.h"
+#include "raycast_bonus.h"
+#include "math_utils_bonus.h"
 
 static __inline__ uint32_t	color_x_angle(t_color color, float angle)
 {

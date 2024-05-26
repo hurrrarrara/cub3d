@@ -6,11 +6,11 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:30:07 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/24 17:20:14 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:33:39 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 char	*get_path(char *line)
 {

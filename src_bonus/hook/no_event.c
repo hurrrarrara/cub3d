@@ -6,20 +6,20 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:56:08 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:59:07 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:30:56 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
-#include "mlx.h"
-#include "raycast.h"
-#include "struct.h"
 #include <math.h>
 #include <stdint.h>
 #include <string.h>
 #include <unistd.h>
-#include "define.h"
-#include "hook.h"
+#include "mlx.h"
+#include "struct_bonus.h"
+#include "minimap_bonus.h"
+#include "raycast_bonus.h"
+#include "define_bonus.h"
+#include "hook_bonus.h"
 
 void	move_cam(t_camera *cam, t_map *map)
 {

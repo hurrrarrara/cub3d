@@ -6,12 +6,12 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:02 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 17:13:36 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:31:04 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
 #include "mlx.h"
+#include "struct_bonus.h"
 
 void	draw_pause(t_data *data)
 {

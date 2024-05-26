@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_hook.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:54 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 16:58:55 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx.h"
 #include "hook.h"
 #include "quit.h"
@@ -18,6 +30,7 @@ int	loose_focus(t_data *data)
 void	init_hook(t_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, key_press_hook, data);
+	mlx_hook(data->win, 3, 1L << 1, key_release_hook, data);
 	mlx_hook(data->win, 6, 1L << 6, mouse_move_hook, data);
 	mlx_hook(data->win, 4, 1L << 2, mouse_button_hook, data);
 	mlx_hook(data->win, 17, 1L << 17, xclose, data);

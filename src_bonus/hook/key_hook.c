@@ -6,14 +6,14 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:13 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:59:14 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:31:09 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
-#include "define.h"
 #include <stdint.h>
-#include "quit.h"
+#include "struct_bonus.h"
+#include "define_bonus.h"
+#include "quit_bonus.h"
 
 void	toogle_door(t_data *data)
 {

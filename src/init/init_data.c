@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:58 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:15:10 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "src/basics/basics.h"
 #include "struct.h"
@@ -47,17 +59,17 @@ void	clean_map(t_data *data)
 
 void	fetch_texture(t_data *data)
 {
-	if (!xpm_to_image(data, data->render_vars.textures, data->map.no) || !reverse_img(data->render_vars.textures))
+	if (!xpm_to_image(data, data->render_vars.textures, data->map.no) \
+		|| !reverse_img(data->render_vars.textures))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 1, data->map.so) || !reverse_img(data->render_vars.textures + 1))
+	if (!xpm_to_image(data, data->render_vars.textures + 1, data->map.so) \
+		|| !reverse_img(data->render_vars.textures + 1))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 2, data->map.ea) || !reverse_img(data->render_vars.textures + 2))
+	if (!xpm_to_image(data, data->render_vars.textures + 2, data->map.ea) \
+		|| !reverse_img(data->render_vars.textures + 2))
 		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 3, data->map.we) || !reverse_img(data->render_vars.textures + 3))
-		quit(data, 1);
-	if (!xpm_to_image(data, data->render_vars.textures + 4, DOOR_TEXT) || !reverse_img(data->render_vars.textures + 4))
-		quit(data, 1);
-	if (!xpm_to_image(data, &data->door_notif, DOOR_NOTIF))
+	if (!xpm_to_image(data, data->render_vars.textures + 3, data->map.we) \
+		|| !reverse_img(data->render_vars.textures + 3))
 		quit(data, 1);
 	if (!xpm_to_image(data, &data->pause_screen, PAUSE_SCREEN))
 		quit(data, 1);
@@ -66,7 +78,6 @@ void	fetch_texture(t_data *data)
 void	init_render_vars(t_data *data)
 {
 	data->render_vars.render_map = (uint32_t *)data->final_render.addr;
-	data->render_vars.width = 549;
 	data->render_vars.ceiling = (t_color){\
 		.r = data->map.c[0], \
 		.g = data->map.c[1], \
@@ -84,6 +95,10 @@ t_bool	init_data(t_data *data)
 	const uint16_t	width_square = ft_i16min(MINIMAP_HEIGHT / data->map.height, \
 		MINIMAP_WIDTH / data->map.width);
 
+	data->fw = FALSE;
+	data->bw = FALSE;
+	data->l = FALSE;
+	data->r = FALSE;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		quit(data, 1);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:40 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:17:03 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raycast.h"
 #include "define.h"
 #include "struct.h"
@@ -6,16 +18,15 @@
 
 t_ray	set_ray(const t_camera cam, uint16_t nb_ray)
 {
-	const float		hypo = 1 * cosf(cam.fov * M_PI * 0.5 / 180.0);
 	const t_vec2	end = (t_vec2){
-		cos(cam.angle + (cam.fov * M_PI * 0.5 / 180.0)) * hypo,
-		sin(cam.angle + (cam.fov * M_PI * 0.5 / 180.0)) * hypo
+		cos(cam.angle + (cam.fov * M_PI * 0.5 / 180.0)) * CUB_SCAL / cam.fov,
+		sin(cam.angle + (cam.fov * M_PI * 0.5 / 180.0)) * CUB_SCAL / cam.fov
 	};
 	t_ray			ray;
 
 	ray.ray = (t_vec2){
-		cos(cam.angle - (cam.fov * M_PI * 0.5 / 180.0)) * hypo,
-		sin(cam.angle - (cam.fov * M_PI * 0.5 / 180.0)) * hypo
+		cos(cam.angle - (cam.fov * M_PI * 0.5 / 180.0)) * CUB_SCAL / cam.fov,
+		sin(cam.angle - (cam.fov * M_PI * 0.5 / 180.0)) * CUB_SCAL / cam.fov
 	};
 	ray.add = (t_vec2){
 		(end.x - ray.ray.x) * 1.0f / nb_ray,

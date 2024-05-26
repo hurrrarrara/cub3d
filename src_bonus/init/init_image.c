@@ -6,19 +6,17 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:58:52 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:58:53 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:32:34 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "define.h"
-#include "libft.h"
-#include "src/basics/basics.h"
-#include "struct.h"
-#include "mlx.h"
 #include <stdio.h>
 #include <strings.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "libft.h"
+#include "mlx.h"
+#include "struct_bonus.h"
 
 static void	print_error(const char *msg)
 {

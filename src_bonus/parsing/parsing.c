@@ -6,14 +6,13 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:50:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/24 17:50:49 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:41:11 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "libft.h"
-#include "src/basics/basics.h"
 #include <stdio.h>
+#include "libft.h"
+#include "parsing_bonus.h"
 
 void	init_map(t_map *map)
 {
@@ -42,7 +41,7 @@ void	free_map(t_map *map)
 t_bool	check_file(const char *file)
 {
 	int	fd;
-	
+
 	fd = open(file, O_RDONLY);
 	if (fd >= 0)
 		return (fd);

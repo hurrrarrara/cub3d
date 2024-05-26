@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:21:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 16:59:52 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/26 03:43:23 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 
-# include "../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
-# include "struct.h"
-# include "unistd.h"
+# include <unistd.h>
+# include "libft.h"
+# include "struct_bonus.h"
 
 int		line_empty(char *line);
 int		line_ismap(char *line);

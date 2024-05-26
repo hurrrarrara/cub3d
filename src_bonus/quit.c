@@ -6,16 +6,15 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:29 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 17:46:17 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:35:27 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "parsing.h"
-#include "struct.h"
 #include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include "mlx.h"
+#include "struct_bonus.h"
+#include "parsing_bonus.h"
 
 void	clean_img(t_data *data)
 {

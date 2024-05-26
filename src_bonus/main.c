@@ -6,17 +6,16 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:22 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 17:48:39 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:35:05 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
-#include "src/basics/basics.h"
-#include "struct.h"
-#include "init.h"
-#include "mlx.h"
-#include "parsing.h"
 #include <stdio.h>
+#include "mlx.h"
+#include "struct_bonus.h"
+#include "raycast_bonus.h"
+#include "init_bonus.h"
+#include "parsing_bonus.h"
 
 void	debug_print_map(t_map *map)
 {

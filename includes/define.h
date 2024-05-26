@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/26 03:41:33 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:41:34 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINE_H
 # define DEFINE_H
 
@@ -20,9 +32,10 @@
 # define DOOR_CLOSE_COLOR 0x0faf00
 # define WALL_COLOR 0xa000ff
 # define FLOOR_COLOR 0xafafaf
+# define PLAYER_COLOR 0xff0000
 
-# define CUB_HEIGHT 4096
-# define ANIM_OFFSET  549
+# define CUB_HEIGHT 2048
+# define CUB_SCAL 80.0f
 
 # define DOOR_NOTIF "./textures/door.xpm"
 # define PAUSE_SCREEN "./textures/pause.xpm"

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:58:37 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:18:24 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include <stdint.h>
 #include "struct.h"
@@ -32,21 +44,16 @@ static __inline__ \
 void	draw_line(uint16_t col, t_rendervars render_vars, t_drawvars draw_vars)
 {
 	const t_drawlinevars	vars = set_vars(draw_vars, render_vars.y_off);
-	// const uint16_t			y = draw_vars.textures.height - 1;
+	const uint32_t			*text = \
+		((uint32_t *)draw_vars.textures.addr) + draw_vars.x;
 	uint32_t				color;
 	uint16_t				i;
-	const uint32_t			*text = ((uint32_t *)draw_vars.textures.addr) + draw_vars.x * draw_vars.textures.height;
 
 	i = 0;
-
 	while (i < WIN_HEIGHT)
 	{
 		if (i >= vars.start && i < vars.end)
 		{
-			// color = ((uint32_t *)draw_vars.textures.addr) \
-			// 	[draw_vars.x + \
-			// 	(draw_vars.textures.width * \
-			// 	(y - ((int)((i - vars.start) * vars.step))))];
 			color = text[(int)((i - vars.start) * vars.step)];
 			color = color_x_angle((t_color){color}, draw_vars.angle);
 		}

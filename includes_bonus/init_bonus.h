@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.h                                       :+:      :+:    :+:   */
+/*   init_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 17:00:11 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 17:00:12 by ihabiby          ###   ########.fr       */
+/*   Created: 2024/05/24 17:00:14 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:43:01 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_UTILS_H
-# define MATH_UTILS_H
+#ifndef INIT_BONUS_H
+# define INIT_BONUS_H
 
-# include <stdint.h>
+# include "struct_bonus.h"
 
-int16_t	ft_i16max(int16_t a, int16_t b);
-int16_t	ft_i16min(int16_t a, int16_t b);
+t_bool	init_data(t_data *data);
+void	init_hook(t_data *data);
 
-int32_t	ft_i32max(int32_t a, int32_t b);
-int32_t	ft_i32min(int32_t a, int32_t b);
+t_bool	xpm_to_image(t_data *data, t_img *img, const char *texture_path);
+t_bool	init_image(\
+	const t_data *data, \
+	t_img *img, \
+	const uint32_t width, \
+	const uint32_t height);
+
+t_bool	reverse_img(t_img *img);
 
 #endif

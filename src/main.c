@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:59:22 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/24 17:48:39 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raycast.h"
 #include "src/basics/basics.h"
 #include "struct.h"
@@ -26,7 +38,10 @@ int	main(int ac, char **av)
 
 	ft_memset(&data, 0, sizeof(t_data));
 	if (ac != 2)
+	{
+		ft_putstr_fd("Error\nBad number of arguments, need one\n", 2);
 		return (1);
+	}
 	if (parsing(&data.map, av))
 		return (1);
 	data.map.width = data.map.size[0];

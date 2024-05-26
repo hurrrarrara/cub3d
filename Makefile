@@ -41,9 +41,8 @@ hook		:= key_hook mouse_hook no_event pause
 
 main		:= main quit math_utils
 
-includes	:= define.h hook.h init.h math_utils.h minimap.h quit.h raycast.h struct.h parsing.h
+includes	:= define hook init math_utils minimap quit raycast struct parsing
 
-includes_bonus := define.h hook.h init.h math_utils.h minimap.h quit.h raycast.h struct.h parsing.h
 
 INIT_O			= $(addprefix $(INIT_ODIR), $(addsuffix .o, $(init)))
 PARSER_O		= $(addprefix $(PARSER_ODIR), $(addsuffix .o, $(parser)))
@@ -56,8 +55,8 @@ MAIN_O			= $(addsuffix .o, $(main))
 LIBFT_A	= $(LIBFT_DIR)libft.a
 LIBFT_H = $(LIBFT_DIR)libft.h
 
-INCL		= $(addprefix $(IDIR), $(includes))
-INCL_BONUS	= $(addprefix $(IDIR_BONUS), $(includes))
+INCL		= $(addprefix $(IDIR), $(addsuffix .h, $(includes)))
+INCL_BONUS	= $(addprefix $(IDIR_BONUS), $(addsuffix _bonus.h, $(includes)))
 
 obj		= $(INIT_O) $(PARSER_O) $(MAIN_O)  $(MINIMAP_O) $(RAYCAST_O) $(HOOK_O)
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   no_event.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:56:08 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 00:16:16 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minimap.h"
 #include "mlx.h"
 #include "raycast.h"
@@ -35,34 +47,21 @@ void	move_cam(t_camera *cam, t_map *map)
 	cam->move = (t_vec2){0, 0};
 }
 
-void	draw_door_notif(t_data *data)
+void	move(t_data *data)
 {
-	const uint16_t	x = (int)(data->cam.world_pos.x);
-	const uint16_t	y = (int)(data->cam.world_pos.z);
-	const uint16_t	y_offset = \
-		data->final_render.height - data->door_notif.height;
-	int32_t			i;
-	uint32_t		color;
-
-	if (data->map.map[x + 1 + y * data->map.width] < 3 \
-		&& data->map.map[x - 1 + y * data->map.width] < 3 \
-		&& data->map.map[x + (y + 1) * data->map.width] < 3 \
-		&& data->map.map[x + (y - 1) * data->map.width] < 3)
-		return ;
-	i = 0;
-	while (i < data->door_notif.width * data->door_notif.height)
-	{
-		color = ((uint32_t *)data->door_notif.addr)[i];
-		if (color << 8)
-			((uint32_t *)data->final_render.addr)\
-			[113 + (i % data->door_notif.width) + (y_offset + \
-			(i / data->door_notif.width)) * data->final_render.width] = color;
-		i++;
-	}
+	if (data->fw)
+		data->cam.move.x += MOVE_SPEED;
+	if (data->bw)
+		data->cam.move.x -= MOVE_SPEED;
+	if (data->l)
+		data->cam.move.y -= MOVE_SPEED;
+	if (data->r)
+		data->cam.move.y += MOVE_SPEED;
 }
 
 int	no_event(t_data *data)
 {
+	move(data);
 	if (data->pause_toggle >= 1)
 		return (active_pause(data), 0);
 	mlx_mouse_hide(data->mlx, data->win);
@@ -72,11 +71,8 @@ int	no_event(t_data *data)
 	move_cam(&data->cam, &data->map);
 	memset(data->minimap.addr, 0, \
 		data->minimap.line_length * data->minimap.height);
-	data->render_vars.anim_offset = (data->render_vars.anim_offset + \
-		ANIM_OFFSET) % data->render_vars.textures[4].width;
 	raycaster(data->cam, data->map, data->render_vars);
 	draw_minimap(data);
-	draw_door_notif(data);
 	mlx_put_image_to_window(\
 		data->mlx, data->win, data->final_render.img, 0, 0);
 	mlx_put_image_to_window(\

@@ -6,13 +6,12 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:10 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:59:11 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:29:52 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
-#include "define.h"
-#include <stdio.h>
+#include "struct_bonus.h"
+#include "define_bonus.h"
 
 int	mouse_move_hook(int x, int y, t_data *data)
 {

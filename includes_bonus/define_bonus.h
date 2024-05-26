@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   define_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:00:19 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 17:07:56 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:42:35 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#ifndef DEFINE_BONUS_H
+# define DEFINE_BONUS_H
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -32,8 +32,10 @@
 # define DOOR_CLOSE_COLOR 0x0faf00
 # define WALL_COLOR 0xa000ff
 # define FLOOR_COLOR 0xafafaf
+# define PLAYER_COLOR 0xff0000
 
 # define CUB_HEIGHT 2048
+# define CUB_SCAL 80.0f
 # define ANIM_OFFSET 549
 
 # define DOOR_NOTIF "./textures/door.xpm"

@@ -6,20 +6,19 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:58:58 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:58:59 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:31:45 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "src/basics/basics.h"
-#include "struct.h"
-#include "define.h"
-#include "mlx.h"
-#include "init.h"
 #include <math.h>
 #include <stdint.h>
-#include "quit.h"
-#include "math_utils.h"
+#include "mlx.h"
+#include "libft.h"
+#include "struct_bonus.h"
+#include "define_bonus.h"
+#include "init_bonus.h"
+#include "quit_bonus.h"
+#include "math_utils_bonus.h"
 
 void	init_cam(t_map *map, t_camera *camera)
 {

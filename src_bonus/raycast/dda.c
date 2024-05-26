@@ -6,15 +6,15 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:51:18 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 18:04:33 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:34:07 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "define.h"
-#include "../includes_bonus/raycast.h"
 #include <math.h>
 #include <stdint.h>
-#include "struct.h"
+#include "struct_bonus.h"
+#include "define_bonus.h"
+#include "raycast_bonus.h"
 
 static __inline__ t_ddavrs	set_dda_vars(t_ray ray)
 {

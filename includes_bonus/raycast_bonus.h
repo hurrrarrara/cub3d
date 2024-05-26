@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.h                                          :+:      :+:    :+:   */
+/*   raycast_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:00:00 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 18:04:36 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:43:34 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_H
-# define RAYCAST_H
+#ifndef RAYCAST_BONUS_H
+# define RAYCAST_BONUS_H
 
-# include "struct.h"
 # include <stdint.h>
+# include "struct_bonus.h"
 
 typedef struct s_ray
 {

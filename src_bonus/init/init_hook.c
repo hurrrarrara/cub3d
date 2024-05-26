@@ -6,14 +6,14 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:58:54 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:58:55 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:31:59 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "hook.h"
-#include "quit.h"
-#include "struct.h"
+#include "hook_bonus.h"
+#include "quit_bonus.h"
+#include "struct_bonus.h"
 
 int	xclose(t_data *data)
 {

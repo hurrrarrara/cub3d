@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/26 03:41:55 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:41:56 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
@@ -87,7 +99,7 @@ typedef struct s_rendervars
 	uint32_t	*render_map;
 	t_color		floor;
 	t_color		ceiling;
-	t_img		textures[5];
+	t_img		textures[4];
 	uint32_t	anim_offset;
 	uint16_t	width;
 	float		y_off;

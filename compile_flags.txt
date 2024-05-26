@@ -1,5 +1,6 @@
 -I./mlx
 -I./includes
+-I./includes_bonus
 -I./libft
 -Wall
 -Werror

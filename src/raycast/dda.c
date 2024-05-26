@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/24 16:51:18 by ihabiby           #+#    #+#             */
+/*   Updated: 2024/05/26 03:40:18 by ihabiby          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raycast.h"
 #include <math.h>
 #include <stdint.h>
@@ -43,7 +55,7 @@ static __inline__ \
 		((dda_vars.step.y == -1) * 1) + (wall.y == 3) * 4;
 
 	draw_vars.angle = fminf(1, \
-		1.1 - fabs(((wall.x) * ray.ray.y + (!wall.x) * ray.ray.x) * \
+		1.5 - fabs(((wall.x) * ray.ray.y + (!wall.x) * ray.ray.x) * \
 		(1 / sqrtf((ray.ray.x * ray.ray.x) + (ray.ray.y * ray.ray.y)))));
 	draw_vars.textures = render_vars.textures[text_nb];
 	draw_vars.dist = (wall.x) * dda_vars.dist.x + (!wall.x) * dda_vars.dist.y;
@@ -52,7 +64,9 @@ static __inline__ \
 	x -= floorf(x);
 	draw_vars.x = x * draw_vars.textures.width;
 	if ((wall.x) * (dda_vars.step.x == -1) + (!wall.x) * (dda_vars.step.y == 1))
-		draw_vars.x = draw_vars.textures.width - draw_vars.x - 1;
+		draw_vars.x = (draw_vars.textures.width - draw_vars.x - 1);
+	draw_vars.x = (draw_vars.x * draw_vars.textures.height) + \
+		(text_nb == 4) * render_vars.anim_offset;
 	return (draw_vars);
 }
 

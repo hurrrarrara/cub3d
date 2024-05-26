@@ -6,11 +6,11 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/24 17:43:33 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/26 03:33:21 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 int	check_err_extension(char *file)
 {
