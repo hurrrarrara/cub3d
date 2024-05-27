@@ -6,13 +6,14 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:13 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/26 00:17:15 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/27 08:22:39 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 #include "define.h"
 #include "quit.h"
+#include <X11/keysym.h>
 
 int	key_release_hook(int key, t_data *data)
 {
@@ -37,9 +38,13 @@ int	key_press_hook(int key, t_data *data)
 		data->l = TRUE;
 	if (key == KEY_RIGHT)
 		data->r = TRUE;
-	if (key == 65289)
+	if (key == XK_Left)
+		data->cam.angle -= ROTATE_SPEED * 10;
+	if (key == XK_Right)
+		data->cam.angle += ROTATE_SPEED * 10;
+	if (key == XK_Tab)
 		data->pause_toggle = (data->pause_toggle == 0);
-	if (key == 65307)
+	if (key == XK_Escape)
 		quit(data, 0);
 	return (0);
 }

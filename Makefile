@@ -20,7 +20,7 @@ RAYCAST_ODIR		:= raycast/
 HOOK_ODIR			:= hook/
 
 CC		:= cc
-DEBUG	:= #-g3 -fsanitize=address,leak
+DEBUG	:= #-g3 #-fsanitize=address,leak
 CFLAGS	:= $(DEBUG) -Wall -Werror -Wextra
 LFLAGS	:= -L$(MLXDIR) -L$(LIBFT_DIR) -lmlx_Linux -lm -lft -lX11 -lXext
 IFLAGS	:= -I$(IDIR) -I$(MLXDIR) -I$(LIBFT_DIR)
