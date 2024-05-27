@@ -6,7 +6,7 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:30:07 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 15:58:52 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/27 11:40:41 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ char	*get_path(char *line)
 int	get_info(char *line, t_map *map, size_t i)
 {
 	if (ft_strncmp(&line[i], "NO ", 3) == 0 && !map->no)
-		map->no = get_path(&line[2]);
+		map->no = get_path(&line[i + 2]);
 	else if (ft_strncmp(&line[i], "SO ", 3) == 0 && !map->so)
-		map->so = get_path(&line[2]);
+		map->so = get_path(&line[i + 2]);
 	else if (ft_strncmp(&line[i], "WE ", 3) == 0 && !map->we)
-		map->we = get_path(&line[2]);
+		map->we = get_path(&line[i + 2]);
 	else if (ft_strncmp(&line[i], "EA ", 3) == 0 && !map->ea)
-		map->ea = get_path(&line[2]);
+		map->ea = get_path(&line[i + 2]);
 	else if (ft_strncmp(&line[i], "F ", 2) == 0 && !map->f)
-		map->f = get_color(&line[1]);
+		map->f = get_color(&line[i + 1]);
 	else if (ft_strncmp(&line[i], "C ", 2) == 0 && !map->c)
-		map->c = get_color(&line[1]);
+		map->c = get_color(&line[i + 1]);
 	else if (!line_empty(line))
 		return (0);
 	return (1);
