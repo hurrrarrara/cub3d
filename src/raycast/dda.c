@@ -6,11 +6,10 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:51:18 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/27 09:20:16 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/27 09:23:19 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "define.h"
 #include "raycast.h"
 #include <math.h>
 #include <stdint.h>
