@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 03:41:55 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/26 03:41:56 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:08:56 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_camera
 {
 	t_vec3	world_pos;
 	t_vec2	move;
+	t_bool	rot_l;
+	t_bool	rot_r;
 	float	angle;
 	float	fov;
 }	t_camera;

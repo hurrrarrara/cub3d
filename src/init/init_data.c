@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:58:58 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/26 03:15:10 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:16:02 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ t_bool	init_data(t_data *data)
 	data->bw = FALSE;
 	data->l = FALSE;
 	data->r = FALSE;
+	data->cam.rot_l = FALSE;
+	data->cam.rot_r = FALSE;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		quit(data, 1);
