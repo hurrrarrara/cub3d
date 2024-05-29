@@ -65,7 +65,7 @@ void	move(t_data *data)
 
 int	no_event(t_data *data)
 {
-	ft_printf("event!!!!\n");
+	// ft_printf("event!!!!\n");
 	move(data);
 	if (data->pause_toggle >= 1)
 		return (active_pause(data), 0);
