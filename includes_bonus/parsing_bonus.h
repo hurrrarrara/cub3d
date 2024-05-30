@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:21:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/30 13:59:21 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/30 14:49:24 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "struct_bonus.h"
 
 int		line_empty(char *line);
-int		line_ismap(char *line);
 int		check_err_end_file(char *line, int fd);
 int		check_err_tex(t_map *map);
 int		check_err_extension(char *file);

@@ -6,7 +6,7 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:19:35 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/26 03:33:36 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:41:55 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	get_map(int fd, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line && line_ismap(line))
+	while (line && !line_empty(line))
 	{
 		map2d = ft_realloc_2d(map2d, line);
 		if (!map2d)

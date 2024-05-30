@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:19:35 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/28 16:31:50 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/30 14:41:29 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdio.h>
 
 char	**ft_realloc_2d_2(char ***newmap, char **map, char *line)
 {
@@ -111,7 +112,7 @@ int	get_map(int fd, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line && line_ismap(line))
+	while (line && !line_empty(line))
 	{
 		map2d = ft_realloc_2d(map2d, line);
 		if (!map2d)
