@@ -44,13 +44,13 @@ main		:= main quit math_utils
 includes	:= define hook init math_utils minimap quit raycast struct parsing
 
 
-INIT_O			= $(addprefix $(INIT_ODIR), $(addsuffix .o, $(init)))
-PARSER_O		= $(addprefix $(PARSER_ODIR), $(addsuffix .o, $(parser)))
-MINIMAP_O		= $(addprefix $(MINIMAP_ODIR), $(addsuffix .o, $(minimap)))
-RAYCAST_O		= $(addprefix $(RAYCAST_ODIR), $(addsuffix .o, $(raycast)))
-HOOK_O			= $(addprefix $(HOOK_ODIR), $(addsuffix .o, $(hook)))
+INIT_O			= $(addprefix $(INIT_ODIR), $(init))
+PARSER_O		= $(addprefix $(PARSER_ODIR), $(parser))
+MINIMAP_O		= $(addprefix $(MINIMAP_ODIR), $(minimap))
+RAYCAST_O		= $(addprefix $(RAYCAST_ODIR), $(raycast))
+HOOK_O			= $(addprefix $(HOOK_ODIR), $(hook))
 
-MAIN_O			= $(addsuffix .o, $(main))
+MAIN_O			= $(main)
 
 LIBFT_A	= $(LIBFT_DIR)libft.a
 LIBFT_H = $(LIBFT_DIR)libft.h
@@ -60,9 +60,9 @@ INCL_BONUS	= $(addprefix $(IDIR_BONUS), $(addsuffix _bonus.h, $(includes)))
 
 obj		= $(INIT_O) $(PARSER_O) $(MAIN_O)  $(MINIMAP_O) $(RAYCAST_O) $(HOOK_O)
 
-OBJ		= $(addprefix $(ODIR), $(obj))
+OBJ		= $(addprefix $(ODIR), $(addsuffix .o, $(obj)))
 
-OBJ_BONUS	= $(addprefix $(ODIR_BONUS), $(obj))
+OBJ_BONUS	= $(addprefix $(ODIR_BONUS), $(addsuffix _bonus.o, $(obj)))
 
 .PHONY: all re clean fclan MLX DIR bonus
 
@@ -92,6 +92,7 @@ $(ODIR_BONUS)%.o: $(SDIR_BONUS)%.c Makefile $(INCL_BONUS)
 	$(CC) $(CFLAGS) $(IFLAGS_BONUS) -o $@ -c $<
 
 DIR_BONUS:
+	echo $(OBJ_BONUS)
 	mkdir -p $(ODIR_BONUS)
 	mkdir -p $(ODIR_BONUS)$(INIT_ODIR)
 	mkdir -p $(ODIR_BONUS)$(PARSER_ODIR)
