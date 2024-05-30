@@ -41,6 +41,12 @@ typedef struct s_i8point2
 	int8_t	y;
 }	t_i8point2;
 
+typedef struct s_i32point2
+{
+	int32_t	x;
+	int32_t	y;
+}	t_i32point2;
+
 typedef struct s_vec3
 {
 	float	x;

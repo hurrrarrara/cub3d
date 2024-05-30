@@ -6,7 +6,7 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:00:19 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/26 03:42:35 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/29 10:24:48 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 # define MINIMAP_WIDTH 400
 # define MINIMAP_HEIGHT 300
+# define MINIMAP_CUB_WIDTH 20
+# define PLAYER_WIDTH 5
+# define MINIMAP_PLAYER_POS (MINIMAP_WIDTH / 2) + ((MINIMAP_HEIGHT / 2) - (PLAYER_WIDTH / 2)) * MINIMAP_WIDTH
 
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.0005

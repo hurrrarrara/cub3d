@@ -10,70 +10,97 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include "struct_bonus.h"
 #include "define_bonus.h"
 #include "math_utils_bonus.h"
+#include "struct_bonus.h"
+#include <stdint.h>
 
-void	draw_chunk(t_img *img, t_point2 pos, uint8_t type, const uint16_t width)
+void	draw_player(t_img *img, const int32_t i)
 {
-	const uint32_t	color = (type == 1) * FLOOR_COLOR + \
-		(type == 2) * WALL_COLOR + (type == 3) * DOOR_CLOSE_COLOR + \
-		(type == 4) * DOOR_OPEN_COLOR;
-	int16_t			i;
+	uint8_t	x;
+	uint8_t	y;
 
-	i = 0;
-	while (i < (width) * (width))
+	y = 0;
+	while (y < 5)
 	{
-		((unsigned int *)img->addr)[(pos.x * (width)) + (i % (width)) + \
-			((pos.y * (width) + (i / (width))) * img->width)] = color;
-		i++;
+		x = 0;
+		while (x < 5)
+		{
+			((uint32_t *)img->addr)[i + x + y * img->width] = PLAYER_COLOR;
+			x++;
+		}
+		y++;
 	}
-	if (type <= 1)
-		return ;
 }
 
-void	draw_player(t_img *img, const t_vec3 pos, const uint16_t width)
-{
-	const int32_t	i = (width * pos.x) + (img->width * (int)(width * pos.z));
 
-	((unsigned int *)img->addr)[i] = PLAYER_COLOR;
-	if (i % img->width < img->width - 1)
+t_i32point2	get_start(t_data *data)
+{
+	t_i32point2	start;
+
+	start.x = ft_i16max(0, data->cam.world_pos.x - ((MINIMAP_WIDTH / MINIMAP_CUB_WIDTH) / 2) - 1);
+	start.y = ft_i16max(0, data->cam.world_pos.z - ((MINIMAP_HEIGHT / MINIMAP_CUB_WIDTH) / 2) - 1);
+
+	return (start);
+}
+
+
+t_i32point2	get_end(t_data *data)
+{
+	t_i32point2	start;
+
+	start.x = ft_i16min(data->map.width, data->cam.world_pos.x + ((MINIMAP_WIDTH / MINIMAP_CUB_WIDTH) / 2) + 2);
+	start.y = ft_i16min(data->map.height, data->cam.world_pos.z + ((MINIMAP_HEIGHT / MINIMAP_CUB_WIDTH) / 2) + 2);
+
+	return (start);
+}
+
+void	draw_chunk(t_data *data, t_i32point2 start, uint8_t type)
+{
+	const uint32_t	color = (type == 1) * FLOOR_COLOR + \
+		(type == 2) * WALL_COLOR + (type == 3) * DOOR_CLOSE_COLOR + (type == 4) * DOOR_OPEN_COLOR;
+	int32_t	x;
+	int32_t	y;
+	t_i32point2	end;
+
+	end.x = ft_i32min(MINIMAP_CUB_WIDTH, data->minimap.width - start.x);
+	end.y = ft_i32min(MINIMAP_CUB_WIDTH, data->minimap.height - start.y);
+
+	y = 0;
+	while (y < end.y)
 	{
-		if (i / img->width > 0)
-			((unsigned int *)img->addr)[i + 1 - img->width] = PLAYER_COLOR;
-		if (i / img->width < img->height - 1)
-			((unsigned int *)img->addr)[i + 1 + img->width] = PLAYER_COLOR;
-		((unsigned int *)img->addr)[i + 1] = PLAYER_COLOR;
+		x = 0;
+		while (x < end.x)
+		{
+			((uint32_t *)data->minimap.addr)[start.x + x + ((start.y + y) * data->minimap.width)] = color;
+			x++;
+		}
+		y++;
 	}
-	if (i % img->width > 0)
-	{
-		if (i / img->width > 0)
-			((unsigned int *)img->addr)[i - 1 - img->width] = PLAYER_COLOR;
-		if (i / img->width < img->height - 1)
-			((unsigned int *)img->addr)[i - 1 + img->width] = PLAYER_COLOR;
-		((unsigned int *)img->addr)[i - 1] = PLAYER_COLOR;
-	}
-	if (i / img->width > 0)
-		((unsigned int *)img->addr)[i - img->width] = PLAYER_COLOR;
-	if (i / img->width < img->height - 1)
-		((unsigned int *)img->addr)[i + img->width] = PLAYER_COLOR;
+	
 }
 
 void	draw_minimap(t_data *data)
 {
-	const uint16_t	width_square = \
-		ft_i16min(data->minimap.height / data->map.height, \
-		data->minimap.width / data->map.width);
-	int16_t			i;
+	t_i32point2	start = get_start(data);
+	t_i32point2	end = get_end(data);
+	int16_t	x;
+	int16_t	y;
 
-	i = -1;
-	while (++i < data->map.allocated)
+	y = 0;
+	while (y < end.y - start.y)
 	{
-		draw_chunk(&data->minimap, (t_point2){\
-			.x = i % data->map.width, \
-			.y = i / data->map.width}, \
-			data->map.map[i], width_square);
+		x = 0;
+		while (x < end.x - start.x)
+		{
+			draw_chunk(data, \
+				(t_i32point2){
+					ft_i32max(0, (MINIMAP_WIDTH / 2) - (data->cam.world_pos.x - (start.x + x)) * MINIMAP_CUB_WIDTH), \
+					ft_i32max(0, (MINIMAP_HEIGHT / 2) - (data->cam.world_pos.z - (start.y + y)) * MINIMAP_CUB_WIDTH)}, \
+			data->map.map[start.x + x + (start.y + y) * data->map.width]);
+			x++;
+		}
+		y++;
 	}
-	draw_player(&data->minimap, data->cam.world_pos, width_square);
+	draw_player(&data->minimap, MINIMAP_PLAYER_POS);
 }

@@ -59,25 +59,13 @@ int	key_release_hook(int key, t_data *data)
 int	key_press_hook(int key, t_data *data)
 {
 	if (key == KEY_FRWD)
-	{
-		ft_printf("FRWD\n");
 		data->fw = TRUE;
-	}
 	if (key == KEY_BCKWRD)
-	{
-		ft_printf("BCKWD\n");
 		data->bw = TRUE;
-	}
 	if (key == KEY_LEFT)
-	{
-		ft_printf("LEFT\n");
 		data->l = TRUE;
-	}
 	if (key == KEY_RIGHT)
-	{
-		ft_printf("RIGHT\n");
 		data->r = TRUE;
-	}
 	if (key == 'f')
 		toogle_door(data);
 	if (key == XK_Left)

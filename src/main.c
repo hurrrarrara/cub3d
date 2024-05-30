@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 	mlx_mouse_hide(data.mlx, data.win);
 	raycaster(data.cam, data.map, data.render_vars);
 	mlx_put_image_to_window(data.mlx, data.win, data.final_render.img, 0, 0);
+	data.pause_toggle = 0;
 	mlx_loop(data.mlx);
 	return (0);
 }

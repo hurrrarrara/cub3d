@@ -97,9 +97,6 @@ void	init_render_vars(t_data *data)
 
 t_bool	init_data(t_data *data)
 {
-	const uint16_t	width_square = ft_i16min(MINIMAP_HEIGHT / data->map.height, \
-		MINIMAP_WIDTH / data->map.width);
-
 	data->fw = FALSE;
 	data->bw = FALSE;
 	data->l = FALSE;
@@ -112,7 +109,7 @@ t_bool	init_data(t_data *data)
 	if (!init_image(data, &data->final_render, WIN_WIDTH, WIN_HEIGHT))
 		quit(data, 1);
 	if (!init_image(data, &data->minimap, \
-		width_square * data->map.width, width_square * data->map.height))
+		MINIMAP_WIDTH, MINIMAP_HEIGHT))
 		quit(data, 1);
 	init_cam(&data->map, &data->cam);
 	init_render_vars(data);
