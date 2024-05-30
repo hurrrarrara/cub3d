@@ -6,7 +6,7 @@
 /*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:58:54 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/24 16:58:55 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:04:31 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	xclose(t_data *data)
 
 int	loose_focus(t_data *data)
 {
+	if (data->pause_toggle)
+		mlx_mouse_show(data->mlx, data->win);
 	data->pause_toggle = 1;
 	return (0);
 }

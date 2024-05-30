@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_event.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:56:08 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/28 16:15:37 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/30 15:06:19 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	no_event(t_data *data)
 	move(data);
 	if (data->pause_toggle >= 1)
 		return (active_pause(data), 0);
-	mlx_mouse_hide(data->mlx, data->win);
 	data->mouse.x = WIN_WIDTH / 2;
 	data->mouse.y = WIN_HEIGHT / 2;
 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);

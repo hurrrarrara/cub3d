@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:59:13 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/28 15:21:49 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/30 15:04:40 by ihabiby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "define.h"
 #include "quit.h"
 #include <X11/keysym.h>
+#include "mlx.h"
 
 int	key_release_hook(int key, t_data *data)
 {
@@ -47,7 +48,13 @@ int	key_press_hook(int key, t_data *data)
 	if (key == XK_Right)
 		data->cam.rot_r = TRUE;
 	if (key == XK_Tab)
+	{
 		data->pause_toggle = (data->pause_toggle == 0);
+		if (!data->pause_toggle)
+			mlx_mouse_hide(data->mlx, data->win);
+		else
+			mlx_mouse_show(data->mlx, data->win);
+	}
 	if (key == XK_Escape)
 		quit(data, 0);
 	return (0);
