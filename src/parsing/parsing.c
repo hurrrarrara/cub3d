@@ -6,7 +6,7 @@
 /*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:50:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/28 16:34:24 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/30 13:56:25 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,32 @@ void	free_map(t_map *map)
 	free(map->c);
 }
 
+void	free_tab(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	if (str)
+		free(str);
+}
+
+t_bool	check_file(const char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd >= 0)
+		return (fd);
+	write(2, "Error\n", 6);
+	perror(file);
+	return (fd);
+}
+
 int	parsing(t_map *map, char **argv)
 {
 	int		fd;
@@ -47,16 +73,18 @@ int	parsing(t_map *map, char **argv)
 	}
 	init_map(map);
 	fd = open(argv[1], O_RDONLY);
-	if (!get_tex(fd, map) || !get_map(fd, map) || check_err_tex(map, 1))
+	if (fd < 0)
+		return (print_error("Error\nCan't open file\n", 1));
+	if (!get_tex(fd, map) || !get_map(fd, map))
 	{
 		free_map(map);
-		return (1);
+		return (close(fd), 1);
 	}
 	if (check_err_map(map))
 	{
 		free_map(map);
 		ft_fprintf(2, "Error\nBad map format\n");
-		return (1);
+		return (close(fd), 1);
 	}
-	return (0);
+	return (close(fd), 0);
 }

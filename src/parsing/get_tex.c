@@ -6,11 +6,17 @@
 /*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:30:07 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/28 16:34:21 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/30 13:58:18 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+int	print_error(char *str, int error)
+{
+	ft_fprintf(2, "Error\n%s\n", str);
+	return (error);
+}
 
 char	*get_path(char *line)
 {
@@ -36,25 +42,32 @@ char	*get_path(char *line)
 	return (ft_strdup(&line[start]));
 }
 
-int	get_info(char *line, t_map *map, size_t i)
+int	get_info(char *id, char *line, t_map *map, size_t i)
 {
-	if (ft_strncmp(&line[i], "NO ", 3) == 0 && !map->no)
+	if ((ft_strncmp(id, "NO", 3) == 0 && map->no) || \
+		(ft_strncmp(id, "SO", 3) == 0 && map->so) || \
+		(ft_strncmp(id, "WE", 3) == 0 && map->we) || \
+		(ft_strncmp(id, "EA", 3) == 0 && map->ea) || \
+		(ft_strncmp(id, "F", 2) == 0 && map->f) || \
+		(ft_strncmp(id, "C", 2) == 0 && map->c))
+		return (print_error("Duplicate identifier", 0));
+	if (ft_strncmp(id, "NO", 3) == 0)
 		map->no = get_path(&line[i + 2]);
-	else if (ft_strncmp(&line[i], "SO ", 3) == 0 && !map->so)
+	else if (ft_strncmp(id, "SO", 3) == 0)
 		map->so = get_path(&line[i + 2]);
-	else if (ft_strncmp(&line[i], "WE ", 3) == 0 && !map->we)
+	else if (ft_strncmp(id, "WE", 3) == 0)
 		map->we = get_path(&line[i + 2]);
-	else if (ft_strncmp(&line[i], "EA ", 3) == 0 && !map->ea)
+	else if (ft_strncmp(id, "EA", 3) == 0)
 		map->ea = get_path(&line[i + 2]);
-	else if (ft_strncmp(&line[i], "F ", 2) == 0 && !map->f)
+	else if (ft_strncmp(id, "F", 2) == 0)
 		map->f = get_color(&line[i + 1]);
-	else if (ft_strncmp(&line[i], "C ", 2) == 0 && !map->c)
+	else if (ft_strncmp(id, "C", 2) == 0)
 		map->c = get_color(&line[i + 1]);
 	else if (!line_empty(line))
-	{
-		ft_fprintf(2, "Error\nBad identifier or duplicate identifier\n");
-		return (0);
-	}
+		return (print_error("Missing or bad identifier", 0));
+	if ((ft_strncmp(id, "C", 2) == 0 && !map->c) || \
+		(ft_strncmp(id, "F", 2) == 0 && !map->f))
+		return (print_error("Invalid color", 0));
 	return (1);
 }
 
@@ -62,16 +75,23 @@ int	get_tex(int fd, t_map *map)
 {
 	size_t	i;
 	char	*line;
+	char	**split;
 
 	line = get_next_line(fd);
-	while (line && check_err_tex(map, 0))
+	while (line && check_err_tex(map))
 	{
+		split = ft_split(line, ' ');
 		i = 0;
 		while (line[i] == ' ')
 			i++;
-		if (!get_info(line, map, i))
+		if (!get_info(split[0], line, map, i))
+		{
+			free(line);
+			free_tab(split);
 			return (0);
+		}
 		free(line);
+		free_tab(split);
 		line = get_next_line(fd);
 	}
 	if (line)

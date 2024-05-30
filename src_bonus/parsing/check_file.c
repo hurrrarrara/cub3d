@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/26 03:33:21 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:50:12 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,7 @@ int	check_err_map(t_map *map)
 
 int	check_err_tex(t_map *map)
 {
-	if (!map->no)
-		return (1);
-	else if (!map->so)
-		return (1);
-	else if (!map->ea)
-		return (1);
-	else if (!map->we)
-		return (1);
-	else if (!map->c)
-		return (1);
-	else if (!map->f)
+	if (!map->no || !map->so || !map->ea || !map->we || !map->c || !map->f)
 		return (1);
 	return (0);
 }
