@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:30:07 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/27 11:40:41 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/28 16:34:21 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ char	*get_path(char *line)
 		line[i] = '\0';
 		i++;
 	}
-	if (line[i] && line[i] != ' ' && line[i] != '\n')
+	if (start == i || (line[i] && line[i] != ' ' && line[i] != '\n'))
+	{
+		ft_fprintf(2, "Error\nBad argument after identifier\n");
 		return (NULL);
+	}
 	return (ft_strdup(&line[start]));
 }
 
@@ -48,7 +51,10 @@ int	get_info(char *line, t_map *map, size_t i)
 	else if (ft_strncmp(&line[i], "C ", 2) == 0 && !map->c)
 		map->c = get_color(&line[i + 1]);
 	else if (!line_empty(line))
+	{
+		ft_fprintf(2, "Error\nBad identifier or duplicate identifier\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -58,7 +64,7 @@ int	get_tex(int fd, t_map *map)
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line && check_err_tex(map))
+	while (line && check_err_tex(map, 0))
 	{
 		i = 0;
 		while (line[i] == ' ')

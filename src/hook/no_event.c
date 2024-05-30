@@ -6,7 +6,7 @@
 /*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:56:08 by ihabiby           #+#    #+#             */
-/*   Updated: 2024/05/28 15:26:55 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/28 16:15:37 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	move(t_data *data)
 
 int	no_event(t_data *data)
 {
-	ft_printf("event!!!!\n");
 	move(data);
 	if (data->pause_toggle >= 1)
 		return (active_pause(data), 0);

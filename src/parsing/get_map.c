@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:19:35 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 17:27:56 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/28 16:31:50 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ int	get_map_2(char *line, t_map *map, char **map2d, int fd)
 	map2d_to_map(map, map2d);
 	free(map2d);
 	if (check_err_end_file(line, fd))
+	{
+		ft_fprintf(2, "Error\nFile must be empty after map descritpion\n");
 		return (0);
+	}
 	return (1);
 }
 

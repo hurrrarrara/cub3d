@@ -6,7 +6,7 @@
 /*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:50:42 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/22 12:32:54 by rjacq            ###   ########.fr       */
+/*   Updated: 2024/05/28 16:34:24 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,22 @@ int	parsing(t_map *map, char **argv)
 {
 	int		fd;
 
-	if (!check_err_extension(argv[1]))
+	if (check_err_extension(argv[1]))
 	{
-		write(2, "Error\nBad file extension\n", 25);
+		ft_fprintf(2, "Error\nBad file extension\n");
 		return (1);
 	}
 	init_map(map);
 	fd = open(argv[1], O_RDONLY);
-	if (!get_tex(fd, map) || !get_map(fd, map) || check_err_tex(map))
+	if (!get_tex(fd, map) || !get_map(fd, map) || check_err_tex(map, 1))
 	{
 		free_map(map);
-		write(2, "Error\nBad file format\n", 22);
 		return (1);
 	}
 	if (check_err_map(map))
 	{
 		free_map(map);
-		write(2, "Error\nBad map format\n", 21);
+		ft_fprintf(2, "Error\nBad map format\n");
 		return (1);
 	}
 	return (0);

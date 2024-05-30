@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihabiby <ihabiby@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rjacq <rjacq@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:34:15 by rjacq             #+#    #+#             */
-/*   Updated: 2024/05/21 17:14:12 by ihabiby          ###   ########.fr       */
+/*   Updated: 2024/05/28 16:31:28 by rjacq            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,14 @@ int	check_err_map(t_map *map)
 	return (player != 1);
 }
 
-int	check_err_tex(t_map *map)
+int	check_err_tex(t_map *map, int end)
 {
-	if (!map->no)
+	if (!map->no || !map->so || !map->ea || !map->we || !map->c || !map->f)
+	{
+		if(end)
+			ft_fprintf(2, "Error\nMissing identifier\n");
 		return (1);
-	else if (!map->so)
-		return (1);
-	else if (!map->ea)
-		return (1);
-	else if (!map->we)
-		return (1);
-	else if (!map->c)
-		return (1);
-	else if (!map->f)
-		return (1);
+	}
 	return (0);
 }
 
